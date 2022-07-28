@@ -39,6 +39,9 @@ namespace DartApI
 
 
         }
+        /// <summary>
+        /// xml파싱
+        /// </summary>
         public void ReadXML()
         {
             string temp = "";
@@ -57,6 +60,7 @@ namespace DartApI
                 temp += xnl["modify_date"].InnerText;
                 MessageBox.Show(temp);
                 temp = null;
+
             }
 
 
