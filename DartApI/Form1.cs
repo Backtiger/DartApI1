@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Xml;
+
+
 namespace DartApI
 {
     public partial class Form1 : Form
@@ -16,8 +18,10 @@ namespace DartApI
 
         public Form1()
         {
+            string path = null;
             InitializeComponent();
-
+            SetCombo();
+            ReadXML(path);
 
 
         }
@@ -45,11 +49,18 @@ namespace DartApI
         public void ReadXML(string path)
         {
             string temp = "";
-        
 
+            path = "C:\\\\Users\\\\cit\\\\Desktop\\\\corpCode\\\\CORPCODE.xml";
             XmlDocument xml = new XmlDocument();
-
             xml.Load(path);
+            
+
+           // DataTable dt = new DataTable();
+            //System.IO.FileStream stream =  new System.IO.FileStream(path, System.IO.FileMode.Open);          
+           
+            //dt.ReadXmlSchema(stream);
+            //stream.Close();
+
             //ds.ReadXmlSchema("C:\\Users\\cit\\Desktop\\corpCode\\CORPCODE.xml");
             //ds.ReadXml("C:\\Users\\cit\\Desktop\\corpCode\\CORPCODE.xml");
 
@@ -58,11 +69,12 @@ namespace DartApI
 
             foreach (XmlNode xnl in xmlList)
             {
-                if(!string.IsNullOrEmpty(xnl["stock_code"].InnerText))
-                dataGridView1.Rows.Add(xnl["corp_code"].InnerText.ToString()                                    
-                                     , xnl["corp_name"].InnerText.ToString()
-                                     , xnl["stock_code"].InnerText.ToString()
-                                     , xnl["modify_date"].InnerText.ToString());
+                if (!string.IsNullOrEmpty(xnl["stock_code"].InnerText))
+                    dataGridView1.Rows.Add(xnl["corp_code"].InnerText.ToString()
+                                         , xnl["corp_name"].InnerText.ToString()
+                                         , xnl["stock_code"].InnerText.ToString()
+                                         , xnl["modify_date"].InnerText.ToString());
+               
                 //temp += xnl["corp_code"].InnerText;
                 //temp += xnl["corp_code"].InnerText;
                 //temp += xnl["corp_name"].InnerText;
@@ -71,7 +83,15 @@ namespace DartApI
                 //MessageBox.Show(temp);
                 //temp = null;
             }
-
+            //foreach (DataRow row in dt.Rows)
+            //{
+            //    MessageBox.Show(row[0].ToString());
+                
+            //}
+           
+          
+           
+            //dataGridView1.DataSource = dt;
 
         }
 
@@ -80,10 +100,40 @@ namespace DartApI
                                                             //초기 기업정보 xml 경로 세팅 로직
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.ShowDialog();                            //파일찾는 화면 표기
-            dialog.InitialDirectory = "C:\\\\";             //기본 경로 c드라이브 설정
+            dialog.InitialDirectory = "C\\\\";             //기본 경로 c드라이브 설정
             string path = dialog.FileName;                  //선택파일 경로 세팅
 
             ReadXML(path);                                  //xml가공 메서드에 경로 전달
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            frmfinancial fin = new frmfinancial(dataGridView1.Rows[e.RowIndex].Cells["Column1"].Value.ToString()
+                                               ,cboYear.SelectedItem.ToString()
+                                               ,cboReport.SelectedValue.ToString());
+            fin.ShowDialog();
+        }
+        public void SetCombo()
+        {
+            Dictionary<string, string> combodata = new Dictionary<string, string>();
+            combodata.Add("11013", "1분기 보고서");
+            combodata.Add("11012", "반기 보고서");
+            combodata.Add("11014", "3분기 보고서");
+            combodata.Add("11011", "사업 보고서");
+
+            cboReport.DataSource = new BindingSource(combodata,null);
+            cboReport.DisplayMember = "Value";
+            cboReport.ValueMember = "Key";
+
+            cboYear.Items.Add("2015");
+            cboYear.Items.Add("2016");
+            cboYear.Items.Add("2017");
+            cboYear.Items.Add("2018");
+            cboYear.Items.Add("2019");
+            cboYear.Items.Add("2020");
+            cboYear.Items.Add("2021");
+            cboYear.Items.Add("2022");
+
         }
     }
 }
