@@ -16,7 +16,7 @@ namespace DartApI
         public frmfinancial(string corpscode,string year,string report)
         {
             InitializeComponent();
-            ds.Getmulticorps(corpscode,year,report);
+            dataGridView1.DataSource=ds.Getmulticorps(corpscode,year,report);
 
         }
     }
