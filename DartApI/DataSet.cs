@@ -79,28 +79,36 @@ namespace DartApI
             dt.Columns.Add("ord", typeof(string));
             dt.Columns.Add("currency", typeof(string));
             DataRow dr = dt.NewRow();
+
             string aa = null;
+    
+
             foreach (XmlNode node in nodlist)
             {
-                foreach(XmlElement no in node)
-                for (int i = 0; i < list.Count; i++)
+                foreach (XmlElement no in node)
                 {
-                        if (no.Name.Contains(list[i].ToString()))
+                    //for (int i = 0; i < list.Count; i++)
+                    //{
+                    //if (no.Name.Contains(list[i].ToString()))
+                    //{
+                        if(list.Contains(no.Name))                   
+                            dr[no.Name] = no.InnerText.ToString();
+                            // System.Windows.Forms.MessageBox.Show(dr[list[i].ToString()].ToString()); 
+                    //}
+                        if(no.Name == "currency")
                         {
-                            dr[list[i].ToString()] = no.InnerText.ToString();
-                            break;
-                        }
-                        if (no.Name == "currency")
-                        {
-                            dt.ImportRow(dr);
-                            Console.WriteLine(dr.ItemArray.ToString());
+                            //dt.NewRow();
+                           // dt.ImportRow(dr);
+                            dt.Rows.Add(dr.ItemArray);
+
+                            for(int k = 0; k < dr.Table.Columns.Count; k++)
+                                Console.WriteLine(dr[k].ToString());
+
+                     
+                         
                             aa = dt.Rows.Count.ToString();
-                            dt.NewRow();
-                            
-                            
-                            aa=dt.Rows.Count.ToString();
-                       
                         }
+                    //}
                 }
 
 
