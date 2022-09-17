@@ -105,7 +105,7 @@ namespace DartApI
 
             ReadXML(path);                                  //xml가공 메서드에 경로 전달
         }
-
+        
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             frmfinancial fin = new frmfinancial(dataGridView1.Rows[e.RowIndex].Cells["Column1"].Value.ToString()
@@ -133,6 +133,21 @@ namespace DartApI
             cboYear.Items.Add("2020");
             cboYear.Items.Add("2021");
             cboYear.Items.Add("2022");
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 데이터연동ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
         }
     }

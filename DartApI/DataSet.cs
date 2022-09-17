@@ -39,7 +39,8 @@ namespace DartApI
             xml.LoadXml(xml2);
 
             XmlNodeList nodlist = xml.SelectNodes("/result/list"); //xml노드 셀렉 result 노드의 list노드들을 가져옴                     );
-            List<String> list = new List<string>();
+
+            List<String> list = new List<string>(); //api 호출시 노드명이 없는 부분이 있어 비교를 위한 list선언
 
             list.Add("rcept_no");
             list.Add("bsns_year");
@@ -91,7 +92,7 @@ namespace DartApI
                     //{
                     //if (no.Name.Contains(list[i].ToString()))
                     //{
-                        if(list.Contains(no.Name))                   
+                        if(list.Contains(no.Name))      // 리스트에 저장된 값들중 노드명이 포함되면 화면에 뿌려주는 로직             
                             dr[no.Name] = no.InnerText.ToString();
                             // System.Windows.Forms.MessageBox.Show(dr[list[i].ToString()].ToString()); 
                     //}
