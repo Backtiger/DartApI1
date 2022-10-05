@@ -46,6 +46,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.TabMain = new System.Windows.Forms.TabControl();
             this.TabScreenning = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.DtScreening = new System.Windows.Forms.DataGridView();
             this.tabStockName = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,15 +55,13 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.TabMain.SuspendLayout();
             this.TabScreenning.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DtScreening)).BeginInit();
             this.tabStockName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -139,7 +139,7 @@
             // 데이터연동ToolStripMenuItem
             // 
             this.데이터연동ToolStripMenuItem.Name = "데이터연동ToolStripMenuItem";
-            this.데이터연동ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.데이터연동ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.데이터연동ToolStripMenuItem.Text = "데이터 연동";
             this.데이터연동ToolStripMenuItem.Click += new System.EventHandler(this.데이터연동ToolStripMenuItem_Click);
             // 
@@ -214,6 +214,29 @@
             this.TabScreenning.Text = "스크리닝";
             this.TabScreenning.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.21645F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.78355F));
+            this.tableLayoutPanel1.Controls.Add(this.DtScreening, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1155, 645);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // DtScreening
+            // 
+            this.DtScreening.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DtScreening.Location = new System.Drawing.Point(3, 3);
+            this.DtScreening.Name = "DtScreening";
+            this.DtScreening.RowTemplate.Height = 23;
+            this.DtScreening.Size = new System.Drawing.Size(805, 637);
+            this.DtScreening.TabIndex = 0;
+            // 
             // tabStockName
             // 
             this.tabStockName.Controls.Add(this.button3);
@@ -276,29 +299,6 @@
             this.Column5.HeaderText = "Column5";
             this.Column5.Name = "Column5";
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.21645F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.78355F));
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView2, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1155, 645);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(805, 637);
-            this.dataGridView2.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -313,11 +313,11 @@
             this.menuStrip1.PerformLayout();
             this.TabMain.ResumeLayout(false);
             this.TabScreenning.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DtScreening)).EndInit();
             this.tabStockName.ResumeLayout(false);
             this.tabStockName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,7 +350,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView DtScreening;
     }
 }
 

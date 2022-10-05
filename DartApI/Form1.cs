@@ -15,14 +15,18 @@ namespace DartApI
 {
     public partial class Form1 : Form
     {
-
+        DataTable dt;
+        DBconnect db = new DBconnect();
         public Form1()
         {
             string path = null;
+            string sql = "select * from dbo.손익계산서1";
             InitializeComponent();
             SetCombo();
-            ReadXML(path);
+           // ReadXML(path);
 
+          dt=  db.ExcuteDataAdapter(sql);
+            DtScreening.DataSource = dt;
 
         }
 
