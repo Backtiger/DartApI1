@@ -104,7 +104,7 @@ namespace DartApI
                                                             //초기 기업정보 xml 경로 세팅 로직
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.ShowDialog();                            //파일찾는 화면 표기
-            dialog.InitialDirectory = "C\\\\";             //기본 경로 c드라이브 설정
+            dialog.InitialDirectory = "C\\\\";              //기본 경로 c드라이브 설정
             string path = dialog.FileName;                  //선택파일 경로 세팅
 
             ReadXML(path);                                  //xml가공 메서드에 경로 전달
@@ -152,7 +152,8 @@ namespace DartApI
 
         private void 데이터연동ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmDataSetting frmData = new frmDataSetting();
+            frmData.ShowDialog();
         }
     }
 }

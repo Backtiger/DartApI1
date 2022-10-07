@@ -12,8 +12,8 @@ namespace DartApI
     {
         SqlConnection con = new SqlConnection("Data Source =.; Initial Catalog = test; Integrated Security = True");
         DataTable dt = new DataTable();
-
-        public DataTable ExcuteNonquery(string query)
+        string flag;
+        public string ExcuteNonquery(string query)
         {
             try
             {
@@ -29,9 +29,9 @@ namespace DartApI
             {
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
-            
-            
-            return dt;
+                        
+             return flag;
+
         }
 
         public DataTable ExcuteDataAdapter(string query)
@@ -48,3 +48,5 @@ namespace DartApI
 
     }
 }
+
+

@@ -28,37 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.gbDataset = new System.Windows.Forms.GroupBox();
+            this.btnPath = new System.Windows.Forms.Button();
+            this.LBoxPath = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
+            this.gbDataset.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // panel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.panel1.Controls.Add(this.gbDataset);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.TabIndex = 0;
+            // 
+            // gbDataset
+            // 
+            this.gbDataset.AutoSize = true;
+            this.gbDataset.Controls.Add(this.btnPath);
+            this.gbDataset.Controls.Add(this.LBoxPath);
+            this.gbDataset.Controls.Add(this.label2);
+            this.gbDataset.Controls.Add(this.btnOK);
+            this.gbDataset.Location = new System.Drawing.Point(12, 12);
+            this.gbDataset.Name = "gbDataset";
+            this.gbDataset.Size = new System.Drawing.Size(684, 400);
+            this.gbDataset.TabIndex = 0;
+            this.gbDataset.TabStop = false;
+            this.gbDataset.Text = "데이터 세팅";
+            // 
+            // btnPath
+            // 
+            this.btnPath.Location = new System.Drawing.Point(409, 355);
+            this.btnPath.Name = "btnPath";
+            this.btnPath.Size = new System.Drawing.Size(75, 23);
+            this.btnPath.TabIndex = 4;
+            this.btnPath.Text = "경로설정";
+            this.btnPath.UseVisualStyleBackColor = true;
+            this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
+            // 
+            // LBoxPath
+            // 
+            this.LBoxPath.FormattingEnabled = true;
+            this.LBoxPath.ItemHeight = 12;
+            this.LBoxPath.Location = new System.Drawing.Point(89, 38);
+            this.LBoxPath.Name = "LBoxPath";
+            this.LBoxPath.Size = new System.Drawing.Size(199, 304);
+            this.LBoxPath.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(23, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "경로";
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(499, 355);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 0;
+            this.btnOK.Text = "확인";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // frmDataSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.panel1);
             this.Name = "frmDataSetting";
             this.Text = "frmDataSetting";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.gbDataset.ResumeLayout(false);
+            this.gbDataset.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox gbDataset;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.ListBox LBoxPath;
+        private System.Windows.Forms.Button btnPath;
     }
 }
