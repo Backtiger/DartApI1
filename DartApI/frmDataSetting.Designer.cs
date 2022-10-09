@@ -56,18 +56,18 @@
             this.gbDataset.Controls.Add(this.btnOK);
             this.gbDataset.Location = new System.Drawing.Point(12, 12);
             this.gbDataset.Name = "gbDataset";
-            this.gbDataset.Size = new System.Drawing.Size(684, 400);
+            this.gbDataset.Size = new System.Drawing.Size(762, 400);
             this.gbDataset.TabIndex = 0;
             this.gbDataset.TabStop = false;
             this.gbDataset.Text = "데이터 세팅";
             // 
             // btnPath
             // 
-            this.btnPath.Location = new System.Drawing.Point(409, 355);
+            this.btnPath.Location = new System.Drawing.Point(101, 355);
             this.btnPath.Name = "btnPath";
             this.btnPath.Size = new System.Drawing.Size(75, 23);
             this.btnPath.TabIndex = 4;
-            this.btnPath.Text = "경로설정";
+            this.btnPath.Text = "파일선택";
             this.btnPath.UseVisualStyleBackColor = true;
             this.btnPath.Click += new System.EventHandler(this.btnPath_Click);
             // 
@@ -75,7 +75,7 @@
             // 
             this.LBoxPath.FormattingEnabled = true;
             this.LBoxPath.ItemHeight = 12;
-            this.LBoxPath.Location = new System.Drawing.Point(89, 38);
+            this.LBoxPath.Location = new System.Drawing.Point(101, 38);
             this.LBoxPath.Name = "LBoxPath";
             this.LBoxPath.Size = new System.Drawing.Size(199, 304);
             this.LBoxPath.TabIndex = 3;
@@ -83,15 +83,15 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 43);
+            this.label2.Location = new System.Drawing.Point(30, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "경로";
+            this.label2.Text = "파일경로";
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(499, 355);
+            this.btnOK.Location = new System.Drawing.Point(225, 355);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;

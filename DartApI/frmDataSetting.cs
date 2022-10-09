@@ -39,9 +39,7 @@ namespace DartApI
                 foreach (string FileName in dialog.SafeFileNames)
                 {
                     filelist.Add(FileName);
-                }                
-
-                return filelist;
+                }   
             }
             //취소버튼 클릭시 또는 ESC키로 파일창을 종료 했을경우
             else if (dr == DialogResult.Cancel)
@@ -69,7 +67,16 @@ namespace DartApI
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            int flag;
 
+            foreach (string rw in LBoxPath.Items) 
+            {
+               flag = dal.Bulkinsert_IncomeStatement(rw);
+                if (flag > 0) 
+                {
+                    MessageBox.Show("데이터가 생성되었습니다.");
+                }                
+            }
         }
     }
 }

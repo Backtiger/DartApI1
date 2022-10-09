@@ -1,6 +1,6 @@
 ﻿namespace DartApI
 {
-    partial class Form1
+    partial class frmtest
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -55,6 +55,8 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.TabMain.SuspendLayout();
             this.TabScreenning.SuspendLayout();
@@ -62,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DtScreening)).BeginInit();
             this.tabStockName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -139,7 +142,7 @@
             // 데이터연동ToolStripMenuItem
             // 
             this.데이터연동ToolStripMenuItem.Name = "데이터연동ToolStripMenuItem";
-            this.데이터연동ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.데이터연동ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.데이터연동ToolStripMenuItem.Text = "데이터 연동";
             this.데이터연동ToolStripMenuItem.Click += new System.EventHandler(this.데이터연동ToolStripMenuItem_Click);
             // 
@@ -217,9 +220,10 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.21645F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.78355F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.66234F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.33766F));
             this.tableLayoutPanel1.Controls.Add(this.DtScreening, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -231,10 +235,11 @@
             // DtScreening
             // 
             this.DtScreening.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DtScreening.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DtScreening.Location = new System.Drawing.Point(3, 3);
             this.DtScreening.Name = "DtScreening";
             this.DtScreening.RowTemplate.Height = 23;
-            this.DtScreening.Size = new System.Drawing.Size(805, 637);
+            this.DtScreening.Size = new System.Drawing.Size(891, 639);
             this.DtScreening.TabIndex = 0;
             // 
             // tabStockName
@@ -299,6 +304,24 @@
             this.Column5.HeaderText = "Column5";
             this.Column5.Name = "Column5";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(900, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(252, 639);
+            this.panel1.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(34, 55);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 12);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "label5";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -318,6 +341,8 @@
             this.tabStockName.ResumeLayout(false);
             this.tabStockName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,6 +376,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView DtScreening;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label5;
     }
 }
 

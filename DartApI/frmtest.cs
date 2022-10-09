@@ -13,14 +13,14 @@ using System.Xml;
 
 namespace DartApI
 {
-    public partial class Form1 : Form
+    public partial class frmtest : Form
     {
         DataTable dt;
         DBconnect db = new DBconnect();
-        public Form1()
+        public frmtest()
         {
             string path = null;
-            string sql = "select * from dbo.손익계산서1";
+            string sql = "select * from dbo.손익계산서";
             InitializeComponent();
             SetCombo();
            // ReadXML(path);
