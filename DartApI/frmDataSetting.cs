@@ -68,10 +68,20 @@ namespace DartApI
         private void btnOK_Click(object sender, EventArgs e)
         {
             int flag;
+            string dbName = null;
+
+            if (rdBS.Checked) //재무상태
+                dbName = "dbo.stFinacial";
+            if (rdPL.Checked) //손익계산
+                dbName = "dbo.stFinacial";
+            if (rdCE.Checked) //자본변동
+                dbName = "dbo.changeEquity";
+            if (rdCF.Checked) //현금흐름
+                dbName = "dbo.cashFlow";
 
             foreach (string rw in LBoxPath.Items) 
             {
-               flag = dal.Bulkinsert_IncomeStatement(rw);
+               flag = dal.Bulkinsert_IncomeStatement(rw,dbName);
                 if (flag > 0) 
                 {
                     MessageBox.Show("데이터가 생성되었습니다.");
