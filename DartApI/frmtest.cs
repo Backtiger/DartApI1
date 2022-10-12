@@ -20,13 +20,13 @@ namespace DartApI
         public frmtest()
         {
             string path = null;
-            string sql = "select * from dbo.손익계산서";
+            //string sql = "select * from dbo.손익계산서";
             InitializeComponent();
             SetCombo();
-           // ReadXML(path);
+            // ReadXML(path);
 
-          dt=  db.ExcuteDataAdapter(sql);
-            DtScreening.DataSource = dt;
+            // dt=  db.ExcuteDataAdapter(sql);
+            // DtScreening.DataSource = dt;
 
         }
 
@@ -43,10 +43,8 @@ namespace DartApI
         private void button1_Click(object sender, EventArgs e)
         {
 
-         
-
-
         }
+
         /// <summary>
         /// xml파싱
         /// </summary>

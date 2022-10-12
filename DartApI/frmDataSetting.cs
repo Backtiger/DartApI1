@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,16 @@ namespace DartApI
             OpenFileDialog dialog = new OpenFileDialog();
             List<String> filelist = new List<string>();
 
+            //인코딩 변경 관련 변수선언
+            int euckrCodepage = 51949;
+            System.Text.Encoding utf8 = System.Text.Encoding.UTF8;
+            System.Text.Encoding euckr = System.Text.Encoding.GetEncoding(euckrCodepage);
+            int line = 0;
+            string[] readText;
+            string curLine;
+            byte[] utf8Bytes;
+            string decodedStringByUTF8;
+
             dialog.Title = "벌크파일경로 세팅";
             dialog.Filter = "그림 파일 (*.txt, *.cvs) 모든 파일 (*.*) | *.*";
 
@@ -36,8 +47,23 @@ namespace DartApI
             //OK버튼 클릭시
             if (dr == DialogResult.OK)
             {
-                foreach (string FileName in dialog.SafeFileNames)
+              
+                foreach (string FileName in dialog.FileNames)
                 {
+                    //인코딩 utf-8로변경 후 저장하는로직
+                    readText = File.ReadAllLines(FileName, euckr);
+                        line = readText.Length;        
+              
+                    for (int i = 0; i < line; i++)
+                    {
+                        curLine = readText[i];
+                        utf8Bytes = utf8.GetBytes(curLine);
+                        decodedStringByUTF8 = utf8.GetString(utf8Bytes);
+                        readText[i] = decodedStringByUTF8;
+                    }
+
+                    File.WriteAllLines(FileName, readText, Encoding.UTF8);
+
                     filelist.Add(FileName);
                 }   
             }
@@ -73,20 +99,23 @@ namespace DartApI
             if (rdBS.Checked) //재무상태
                 dbName = "dbo.stFinacial";
             if (rdPL.Checked) //손익계산
-                dbName = "dbo.stFinacial";
+                dbName = "dbo.InComeStatement";
             if (rdCE.Checked) //자본변동
                 dbName = "dbo.changeEquity";
             if (rdCF.Checked) //현금흐름
                 dbName = "dbo.cashFlow";
+
 
             foreach (string rw in LBoxPath.Items) 
             {
                flag = dal.Bulkinsert_IncomeStatement(rw,dbName);
                 if (flag > 0) 
                 {
-                    MessageBox.Show("데이터가 생성되었습니다.");
+                    MessageBox.Show(rw+"데이터가 생성되었습니다.");
                 }                
             }
+
+            LBoxPath.DataSource = null;
         }
     }
 }

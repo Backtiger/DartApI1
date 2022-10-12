@@ -10,8 +10,8 @@ namespace DartApI
 {
     class DBconnect
     {
-        //SqlConnection con = new SqlConnection("Data Source =.; Initial Catalog = test; Integrated Security = True");
-        SqlConnection con = new SqlConnection("Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = Stock; Integrated Security = True"); 
+        SqlConnection con = new SqlConnection("Data Source =.; Initial Catalog = test; Integrated Security = True");
+       // SqlConnection con = new SqlConnection("Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = Stock; Integrated Security = True"); 
         DataTable dt = new DataTable();
      
         int flag;
@@ -25,11 +25,14 @@ namespace DartApI
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
                 flag = cmd.ExecuteNonQuery();
-
+                cmd.Dispose();
                 con.Close();
+              
             }
             catch(Exception ex)
-            {
+            {             
+                con.Close();
+
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
                         
@@ -45,11 +48,14 @@ namespace DartApI
                 con.Open();
                 SqlDataAdapter da = new SqlDataAdapter(query, con);
                 da.Fill(dt);
-
+                da.Dispose();
                 con.Close();
+             
             }
             catch (Exception ex) 
-            {
+            {         
+                con.Close();
+
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
             return dt;
