@@ -30,17 +30,20 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.gbDataset = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rdBS = new System.Windows.Forms.RadioButton();
+            this.rdCF = new System.Windows.Forms.RadioButton();
+            this.rdCE = new System.Windows.Forms.RadioButton();
+            this.rdPL = new System.Windows.Forms.RadioButton();
             this.btnPath = new System.Windows.Forms.Button();
             this.LBoxPath = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
-            this.rdPL = new System.Windows.Forms.RadioButton();
-            this.rdCE = new System.Windows.Forms.RadioButton();
-            this.rdCF = new System.Windows.Forms.RadioButton();
-            this.rdBS = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkStockList = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.gbDataset.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -49,12 +52,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.Size = new System.Drawing.Size(686, 450);
             this.panel1.TabIndex = 0;
             // 
             // gbDataset
             // 
             this.gbDataset.AutoSize = true;
+            this.gbDataset.Controls.Add(this.groupBox1);
             this.gbDataset.Controls.Add(this.label1);
             this.gbDataset.Controls.Add(this.rdBS);
             this.gbDataset.Controls.Add(this.rdCF);
@@ -70,6 +74,59 @@
             this.gbDataset.TabIndex = 0;
             this.gbDataset.TabStop = false;
             this.gbDataset.Text = "데이터 세팅";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(377, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 12);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "데이터 구분";
+            // 
+            // rdBS
+            // 
+            this.rdBS.AutoSize = true;
+            this.rdBS.Location = new System.Drawing.Point(379, 140);
+            this.rdBS.Name = "rdBS";
+            this.rdBS.Size = new System.Drawing.Size(83, 16);
+            this.rdBS.TabIndex = 8;
+            this.rdBS.TabStop = true;
+            this.rdBS.Text = "자본변동표";
+            this.rdBS.UseVisualStyleBackColor = true;
+            // 
+            // rdCF
+            // 
+            this.rdCF.AutoSize = true;
+            this.rdCF.Location = new System.Drawing.Point(379, 118);
+            this.rdCF.Name = "rdCF";
+            this.rdCF.Size = new System.Drawing.Size(83, 16);
+            this.rdCF.TabIndex = 7;
+            this.rdCF.TabStop = true;
+            this.rdCF.Text = "현금흐름표";
+            this.rdCF.UseVisualStyleBackColor = true;
+            // 
+            // rdCE
+            // 
+            this.rdCE.AutoSize = true;
+            this.rdCE.Location = new System.Drawing.Point(379, 96);
+            this.rdCE.Name = "rdCE";
+            this.rdCE.Size = new System.Drawing.Size(83, 16);
+            this.rdCE.TabIndex = 6;
+            this.rdCE.TabStop = true;
+            this.rdCE.Text = "재무상태표";
+            this.rdCE.UseVisualStyleBackColor = true;
+            // 
+            // rdPL
+            // 
+            this.rdPL.AutoSize = true;
+            this.rdPL.Location = new System.Drawing.Point(379, 74);
+            this.rdPL.Name = "rdPL";
+            this.rdPL.Size = new System.Drawing.Size(83, 16);
+            this.rdPL.TabIndex = 5;
+            this.rdPL.TabStop = true;
+            this.rdPL.Text = "손익계산서";
+            this.rdPL.UseVisualStyleBackColor = true;
             // 
             // btnPath
             // 
@@ -109,65 +166,32 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // rdPL
+            // groupBox1
             // 
-            this.rdPL.AutoSize = true;
-            this.rdPL.Location = new System.Drawing.Point(379, 74);
-            this.rdPL.Name = "rdPL";
-            this.rdPL.Size = new System.Drawing.Size(83, 16);
-            this.rdPL.TabIndex = 5;
-            this.rdPL.TabStop = true;
-            this.rdPL.Text = "손익계산서";
-            this.rdPL.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.chkStockList);
+            this.groupBox1.Location = new System.Drawing.Point(379, 178);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(136, 44);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "기업리스트";
             // 
-            // rdCE
+            // chkStockList
             // 
-            this.rdCE.AutoSize = true;
-            this.rdCE.Location = new System.Drawing.Point(379, 96);
-            this.rdCE.Name = "rdCE";
-            this.rdCE.Size = new System.Drawing.Size(83, 16);
-            this.rdCE.TabIndex = 6;
-            this.rdCE.TabStop = true;
-            this.rdCE.Text = "재무상태표";
-            this.rdCE.UseVisualStyleBackColor = true;
-            // 
-            // rdCF
-            // 
-            this.rdCF.AutoSize = true;
-            this.rdCF.Location = new System.Drawing.Point(379, 118);
-            this.rdCF.Name = "rdCF";
-            this.rdCF.Size = new System.Drawing.Size(83, 16);
-            this.rdCF.TabIndex = 7;
-            this.rdCF.TabStop = true;
-            this.rdCF.Text = "현금흐름표";
-            this.rdCF.UseVisualStyleBackColor = true;
-            // 
-            // rdBS
-            // 
-            this.rdBS.AutoSize = true;
-            this.rdBS.Location = new System.Drawing.Point(379, 140);
-            this.rdBS.Name = "rdBS";
-            this.rdBS.Size = new System.Drawing.Size(83, 16);
-            this.rdBS.TabIndex = 8;
-            this.rdBS.TabStop = true;
-            this.rdBS.Text = "자본변동표";
-            this.rdBS.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(377, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 12);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "데이터 구분";
+            this.chkStockList.AutoSize = true;
+            this.chkStockList.Location = new System.Drawing.Point(18, 21);
+            this.chkStockList.Name = "chkStockList";
+            this.chkStockList.Size = new System.Drawing.Size(84, 16);
+            this.chkStockList.TabIndex = 0;
+            this.chkStockList.Text = "종목리스트";
+            this.chkStockList.UseVisualStyleBackColor = true;
             // 
             // frmDataSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(686, 450);
             this.Controls.Add(this.panel1);
             this.Name = "frmDataSetting";
             this.Text = "frmDataSetting";
@@ -175,6 +199,8 @@
             this.panel1.PerformLayout();
             this.gbDataset.ResumeLayout(false);
             this.gbDataset.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -192,5 +218,7 @@
         private System.Windows.Forms.RadioButton rdCF;
         private System.Windows.Forms.RadioButton rdCE;
         private System.Windows.Forms.RadioButton rdPL;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chkStockList;
     }
 }

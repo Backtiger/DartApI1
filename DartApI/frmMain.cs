@@ -17,7 +17,7 @@ namespace DartApI
         public frmMain()
         {
             InitializeComponent();
-            DGScreeening.DataSource = dal.SelectInCome();
+            //DGScreeening.DataSource = dal.SelectInCome();
         }
 
         private void 데이터연동ToolStripMenuItem_Click(object sender, EventArgs e)

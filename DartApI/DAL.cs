@@ -34,5 +34,17 @@ namespace DartApI
 
             return dbc.ExcuteNonquery(query);
         }
+
+        public int Insert_stockList(string corpcode, string corpname,string stockcode,string modifydate)
+        {
+            string query =@" insert into dbo.StockList(corp_code
+                                                     , corp_name
+                                                     , stock_code
+                                                     , modifydate)
+                                 values('"+corpcode+"','"+ corpname + "','"+stockcode+"','"+ modifydate + "')";
+
+
+            return dbc.ExcuteNonquery(query);
+        }
     }
 }

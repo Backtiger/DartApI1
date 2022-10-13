@@ -8,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace DartApI
 {
     public partial class frmDataSetting : Form
     {
         DAL dal = new DAL();
-        
+
 
         public frmDataSetting()
         {
@@ -45,27 +46,28 @@ namespace DartApI
             DialogResult dr = dialog.ShowDialog();
 
             //OK버튼 클릭시
+            
             if (dr == DialogResult.OK)
             {
-              
+
                 foreach (string FileName in dialog.FileNames)
                 {
-                    //인코딩 utf-8로변경 후 저장하는로직
-                    readText = File.ReadAllLines(FileName, euckr);
-                        line = readText.Length;        
-              
-                    for (int i = 0; i < line; i++)
-                    {
-                        curLine = readText[i];
-                        utf8Bytes = utf8.GetBytes(curLine);
-                        decodedStringByUTF8 = utf8.GetString(utf8Bytes);
-                        readText[i] = decodedStringByUTF8;
-                    }
+                    // //인코딩 utf-8로변경 후 저장하는로직
+                    // readText = File.ReadAllLines(FileName, euckr);
+                    // line = readText.Length;
 
-                    File.WriteAllLines(FileName, readText, Encoding.UTF8);
+                    //for (int i = 0; i < line; i++)
+                    //{
+                    //  curLine = readText[i];
+                    //  utf8Bytes = utf8.GetBytes(curLine);
+                    //  decodedStringByUTF8 = utf8.GetString(utf8Bytes);
+                    //  readText[i] = decodedStringByUTF8;
+                    //}
+
+                   // File.WriteAllLines(FileName, readText, Encoding.UTF8);
 
                     filelist.Add(FileName);
-                }   
+                }
             }
             //취소버튼 클릭시 또는 ESC키로 파일창을 종료 했을경우
             else if (dr == DialogResult.Cancel)
@@ -79,7 +81,7 @@ namespace DartApI
 
         public void Bulkinsert()
         {
-            dal.SelectInCome();
+            // dal.SelectInCome();
         }
 
         private void btnPath_Click(object sender, EventArgs e)
@@ -106,16 +108,69 @@ namespace DartApI
                 dbName = "dbo.cashFlow";
 
 
-            foreach (string rw in LBoxPath.Items) 
+            foreach (string rw in LBoxPath.Items)
             {
-               flag = dal.Bulkinsert_IncomeStatement(rw,dbName);
-                if (flag > 0) 
+                if (chkStockList.Checked == true)
                 {
-                    MessageBox.Show(rw+"데이터가 생성되었습니다.");
-                }                
+                    ReadXML(rw);
+                }
+                else
+                {
+                    flag = dal.Bulkinsert_IncomeStatement(rw, dbName);
+                    if (flag > 0)
+                    {
+                        MessageBox.Show(rw + "데이터가 생성되었습니다.");
+                    }
+                }
             }
 
             LBoxPath.DataSource = null;
+        }
+        public void ReadXML(string path)
+        {
+            string temp = "";
+            
+            XmlDocument xml = new XmlDocument();
+            xml.Load(path);      
+
+            XmlNodeList xmlList = xml.SelectNodes("/result/list"); //xml노드 셀렉 result 노드의 list노드들을 가져옴                     
+
+
+            foreach (XmlNode xnl in xmlList)
+            {
+                if (!string.IsNullOrEmpty(xnl["stock_code"].InnerText))
+                    dal.Insert_stockList(xnl["corp_code"].InnerText.ToString()
+                                        , xnl["corp_name"].InnerText.ToString()
+                                        , xnl["stock_code"].InnerText.ToString()
+                                        , xnl["modify_date"].InnerText.ToString());
+            }
+            
+        }
+        public void ChangeUTF(string FileName)
+        {   
+            //인코딩 변경 관련 변수선언
+            int euckrCodepage = 51949;
+            System.Text.Encoding utf8 = System.Text.Encoding.UTF8;
+            System.Text.Encoding euckr = System.Text.Encoding.GetEncoding(euckrCodepage);
+            int line = 0;
+            string[] readText;
+            string curLine;
+            byte[] utf8Bytes;
+            string decodedStringByUTF8;
+
+            //인코딩 utf-8로변경 후 저장하는로직
+            readText = File.ReadAllLines(FileName, euckr);
+            line = readText.Length;
+
+            for (int i = 0; i < line; i++)
+            {
+                curLine = readText[i];
+                utf8Bytes = utf8.GetBytes(curLine);
+                decodedStringByUTF8 = utf8.GetString(utf8Bytes);
+                readText[i] = decodedStringByUTF8;
+            }
+
+            File.WriteAllLines(FileName, readText, Encoding.UTF8);
         }
     }
 }

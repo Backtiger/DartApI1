@@ -55,12 +55,6 @@
     <Compile Include="DAL.cs" />
     <Compile Include="DataSet.cs" />
     <Compile Include="DBconnect.cs" />
-    <Compile Include="frmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmtest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,9 +75,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmtest.resx">
       <DependentUpon>frmtest.cs</DependentUpon>
     </EmbeddedResource>

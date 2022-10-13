@@ -55,6 +55,7 @@ namespace DartApI
             path = "C:\\\\Users\\\\cit\\\\Desktop\\\\corpCode\\\\CORPCODE.xml";
             XmlDocument xml = new XmlDocument();
             xml.Load(path);
+            DAL dal = new DAL();
             
 
            // DataTable dt = new DataTable();
@@ -76,7 +77,15 @@ namespace DartApI
                                          , xnl["corp_name"].InnerText.ToString()
                                          , xnl["stock_code"].InnerText.ToString()
                                          , xnl["modify_date"].InnerText.ToString());
-               
+                dal.Insert_stockList(xnl["corp_code"].InnerText.ToString()
+                                    , xnl["corp_name"].InnerText.ToString()
+                                    , xnl["stock_code"].InnerText.ToString()
+                                    , xnl["modify_date"].InnerText.ToString());
+
+
+
+
+
                 //temp += xnl["corp_code"].InnerText;
                 //temp += xnl["corp_code"].InnerText;
                 //temp += xnl["corp_name"].InnerText;
@@ -85,6 +94,8 @@ namespace DartApI
                 //MessageBox.Show(temp);
                 //temp = null;
             }
+
+
             //foreach (DataRow row in dt.Rows)
             //{
             //    MessageBox.Show(row[0].ToString());
