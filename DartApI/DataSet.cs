@@ -104,8 +104,6 @@ namespace DartApI
                             for(int k = 0; k < dr.Table.Columns.Count; k++)
                                 Console.WriteLine(dr[k].ToString());
 
-                     
-                         
                             aa = dt.Rows.Count.ToString();
                         }
                     //}

@@ -30,6 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.gbDataset = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkStockList = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.rdBS = new System.Windows.Forms.RadioButton();
             this.rdCF = new System.Windows.Forms.RadioButton();
@@ -39,8 +41,6 @@
             this.LBoxPath = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkStockList = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.gbDataset.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -74,6 +74,27 @@
             this.gbDataset.TabIndex = 0;
             this.gbDataset.TabStop = false;
             this.gbDataset.Text = "데이터 세팅";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chkStockList);
+            this.groupBox1.Location = new System.Drawing.Point(379, 178);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(136, 44);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "기업리스트";
+            // 
+            // chkStockList
+            // 
+            this.chkStockList.AutoSize = true;
+            this.chkStockList.Location = new System.Drawing.Point(18, 21);
+            this.chkStockList.Name = "chkStockList";
+            this.chkStockList.Size = new System.Drawing.Size(84, 16);
+            this.chkStockList.TabIndex = 0;
+            this.chkStockList.Text = "종목리스트";
+            this.chkStockList.UseVisualStyleBackColor = true;
+            this.chkStockList.CheckedChanged += new System.EventHandler(this.chkStockList_CheckedChanged);
             // 
             // label1
             // 
@@ -165,26 +186,6 @@
             this.btnOK.Text = "확인";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.chkStockList);
-            this.groupBox1.Location = new System.Drawing.Point(379, 178);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(136, 44);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "기업리스트";
-            // 
-            // chkStockList
-            // 
-            this.chkStockList.AutoSize = true;
-            this.chkStockList.Location = new System.Drawing.Point(18, 21);
-            this.chkStockList.Name = "chkStockList";
-            this.chkStockList.Size = new System.Drawing.Size(84, 16);
-            this.chkStockList.TabIndex = 0;
-            this.chkStockList.Text = "종목리스트";
-            this.chkStockList.UseVisualStyleBackColor = true;
             // 
             // frmDataSetting
             // 

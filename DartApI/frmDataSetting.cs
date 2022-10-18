@@ -52,20 +52,24 @@ namespace DartApI
 
                 foreach (string FileName in dialog.FileNames)
                 {
-                    // //인코딩 utf-8로변경 후 저장하는로직
-                    // readText = File.ReadAllLines(FileName, euckr);
-                    // line = readText.Length;
+                    //txt파일만 utf-8로 인코딩 변경되게끔
+                    if (!FileName.Contains("XML"))
+                    {
+                        // //인코딩 utf-8로변경 후 저장하는로직
+                        readText = File.ReadAllLines(FileName, euckr);
+                        line = readText.Length;
 
-                    //for (int i = 0; i < line; i++)
-                    //{
-                    //  curLine = readText[i];
-                    //  utf8Bytes = utf8.GetBytes(curLine);
-                    //  decodedStringByUTF8 = utf8.GetString(utf8Bytes);
-                    //  readText[i] = decodedStringByUTF8;
-                    //}
+                        for (int i = 0; i < line; i++)
+                        {
+                            curLine = readText[i];
+                            utf8Bytes = utf8.GetBytes(curLine);
+                            decodedStringByUTF8 = utf8.GetString(utf8Bytes);
+                            readText[i] = decodedStringByUTF8;
+                        }
 
-                   // File.WriteAllLines(FileName, readText, Encoding.UTF8);
 
+                        File.WriteAllLines(FileName, readText, Encoding.UTF8);
+                    }
                     filelist.Add(FileName);
                 }
             }
@@ -97,38 +101,43 @@ namespace DartApI
         {
             int flag;
             string dbName = null;
-
-            if (rdBS.Checked) //재무상태
-                dbName = "dbo.stFinacial";
-            if (rdPL.Checked) //손익계산
-                dbName = "dbo.InComeStatement";
-            if (rdCE.Checked) //자본변동
-                dbName = "dbo.changeEquity";
-            if (rdCF.Checked) //현금흐름
-                dbName = "dbo.cashFlow";
+            if (!chkStockList.Checked)
+            {
+                if (rdBS.Checked) //재무상태
+                    dbName = "dbo.stFinacial";
+                if (rdPL.Checked) //손익계산
+                    dbName = "dbo.InComeStatement";
+                if (rdCE.Checked) //자본변동
+                    dbName = "dbo.changeEquity";
+                if (rdCF.Checked) //현금흐름
+                    dbName = "dbo.cashFlow";
+            }
 
 
             foreach (string rw in LBoxPath.Items)
             {
                 if (chkStockList.Checked == true)
                 {
-                    ReadXML(rw);
+                   flag = ReadXML(rw);
                 }
                 else
                 {
                     flag = dal.Bulkinsert_IncomeStatement(rw, dbName);
-                    if (flag > 0)
-                    {
-                        MessageBox.Show(rw + "데이터가 생성되었습니다.");
-                    }
+         
+                }
+                if (flag > 0)
+                {
+                    MessageBox.Show(rw + "데이터가 생성되었습니다.");
                 }
             }
 
+
             LBoxPath.DataSource = null;
         }
-        public void ReadXML(string path)
+        //기업리스트 xml파일 넣는 로직
+        public int ReadXML(string path)
         {
-            string temp = "";
+            int rt = 0;
             
             XmlDocument xml = new XmlDocument();
             xml.Load(path);      
@@ -139,12 +148,12 @@ namespace DartApI
             foreach (XmlNode xnl in xmlList)
             {
                 if (!string.IsNullOrEmpty(xnl["stock_code"].InnerText))
-                    dal.Insert_stockList(xnl["corp_code"].InnerText.ToString()
+                   rt= dal.Insert_stockList(xnl["corp_code"].InnerText.ToString()
                                         , xnl["corp_name"].InnerText.ToString()
                                         , xnl["stock_code"].InnerText.ToString()
                                         , xnl["modify_date"].InnerText.ToString());
             }
-            
+            return rt;
         }
         public void ChangeUTF(string FileName)
         {   
@@ -171,6 +180,17 @@ namespace DartApI
             }
 
             File.WriteAllLines(FileName, readText, Encoding.UTF8);
+        }
+
+        private void chkStockList_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkStockList.Checked)
+            {
+                rdBS.Checked = false;
+                rdCE.Checked = false;
+                rdCF.Checked = false;
+                rdPL.Checked = false;
+            }
         }
     }
 }
