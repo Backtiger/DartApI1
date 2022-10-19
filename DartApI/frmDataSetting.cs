@@ -53,7 +53,7 @@ namespace DartApI
                 foreach (string FileName in dialog.FileNames)
                 {
                     //txt파일만 utf-8로 인코딩 변경되게끔
-                    if (!FileName.Contains("XML"))
+                    if (!FileName.Contains("xml"))
                     {
                         // //인코딩 utf-8로변경 후 저장하는로직
                         readText = File.ReadAllLines(FileName, euckr);
@@ -191,6 +191,13 @@ namespace DartApI
                 rdCF.Checked = false;
                 rdPL.Checked = false;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            ds.ToDayStockData();
+
         }
     }
 }

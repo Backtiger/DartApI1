@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -11,10 +13,17 @@ using System.Xml;
 namespace DartApI
 {
     class DataSet
-    {
+    {   //xml파싱 객체 선언
         WebClient wc = new WebClient();
         XmlDocument xml = new XmlDocument();
         DataTable dt = new DataTable();
+        
+        //크롤링 객체 선언
+        ChromeDriverService _driverService = null;
+        ChromeOptions _options = null;
+
+
+
         public DataTable Getmulticorps(string corpscode, string year, string reportcode)
         {
             string url = "https://opendart.fss.or.kr/api/fnlttMultiAcnt.xml";
@@ -109,14 +118,6 @@ namespace DartApI
                     //}
                 }
 
-
-              
-
-
-
-
-
-
                //     node["bsns_year"].InnerText.ToString(),
                // node["stock_code"].InnerText.ToString(),
                // node["reprt_code"].InnerText.ToString(),
@@ -141,6 +142,26 @@ namespace DartApI
             }
 
             return dt;
+
+        }
+
+        public void ToDayStockData()
+        {
+
+            //_options.AddArgument("headless"); // 창을 숨기는 옵션입니다.
+
+            _driverService = ChromeDriverService.CreateDefaultService();
+            _driverService.HideCommandPromptWindow = true;
+
+            _options = new ChromeOptions();
+            _options.AddArgument("disable-gpu");
+
+            ChromeDriver _driver = new ChromeDriver(_driverService ,_options); //크롬드라이버 다운받고 버젼 맞춰줘야함
+            _driver.Navigate().GoToUrl("https://finance.naver.com/sise/sise_market_sum.naver?sosok=0");//네이버 종목정보 코스피 sosok=0 코스탁 sosok=1
+
+            var table= _driver.FindElement(By.XPath("//*[@id='contentarea']/div[3]/table[1]/colgroup")); //종목정보 테이블 xpath
+
+            System.Windows.Forms.MessageBox.Show(table.ToString());
 
         }
 

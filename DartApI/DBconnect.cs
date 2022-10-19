@@ -10,6 +10,7 @@ namespace DartApI
 {
     class DBconnect
     {
+        
         SqlConnection con = new SqlConnection("Data Source=DESKTOP-TKOPMES\\SQLEXPRESS;Initial Catalog=stock;Integrated Security=True");
        // SqlConnection con = new SqlConnection("Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = Stock; Integrated Security = True"); 
         DataTable dt = new DataTable();

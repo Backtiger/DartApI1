@@ -134,7 +134,7 @@ namespace DartApI
             combodata.Add("11014", "3분기 보고서");
             combodata.Add("11011", "사업 보고서");
 
-            cboReport.DataSource = new BindingSource(combodata,null);
+            cboReport.DataSource = new BindingSource(combodata ,null);
             cboReport.DisplayMember = "Value";
             cboReport.ValueMember = "Key";
 

@@ -41,6 +41,7 @@
             this.LBoxPath = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.gbDataset.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -58,6 +59,7 @@
             // gbDataset
             // 
             this.gbDataset.AutoSize = true;
+            this.gbDataset.Controls.Add(this.button1);
             this.gbDataset.Controls.Add(this.groupBox1);
             this.gbDataset.Controls.Add(this.label1);
             this.gbDataset.Controls.Add(this.rdBS);
@@ -187,6 +189,16 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(379, 355);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "확인";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmDataSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -221,5 +233,6 @@
         private System.Windows.Forms.RadioButton rdPL;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chkStockList;
+        private System.Windows.Forms.Button button1;
     }
 }
