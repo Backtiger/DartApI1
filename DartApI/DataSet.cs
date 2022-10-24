@@ -155,13 +155,46 @@ namespace DartApI
 
             _options = new ChromeOptions();
             _options.AddArgument("disable-gpu");
-
+            
             ChromeDriver _driver = new ChromeDriver(_driverService ,_options); //크롬드라이버 다운받고 버젼 맞춰줘야함
             _driver.Navigate().GoToUrl("https://finance.naver.com/sise/sise_market_sum.naver?sosok=0");//네이버 종목정보 코스피 sosok=0 코스탁 sosok=1
 
-            var table= _driver.FindElement(By.XPath("//*[@id='contentarea']/div[3]/table[1]/colgroup")); //종목정보 테이블 xpath
+            //마지막페이지 수를 가져오기위한 로직
+            var href = _driver.FindElement(By.ClassName("pgRR"));
+            var tagA = href.FindElement(By.TagName("a"));
+            var strlink  = tagA.GetAttribute("href");
+            int page = strlink.IndexOf("page=")+5;   //'page=' 길이가 5이기 때문에 5추가
+            int count=Convert.ToInt32(strlink.Substring(page,strlink.Length- page));
 
-            System.Windows.Forms.MessageBox.Show(table.ToString());
+            //마지막 페이지까지 데이터 가져오는 로직
+            for (int i = 1; i <= count; i++)
+            {
+                _driver.Navigate().GoToUrl("https://finance.naver.com/sise/sise_market_sum.naver?sosok=0&page=" + i + "");//네이버 종목정보 코스피 sosok=0 코스탁 sosok=1
+
+
+                var table = _driver.FindElement(By.XPath("//*[@id='contentarea']/div[3]/table[1]")); //종목정보 테이블 xpath
+                var tbody = table.FindElement(By.TagName("tbody"));
+                var tr = tbody.FindElements(By.TagName("tr"));
+
+                foreach (var dr in tr)
+                {
+                    var td = dr.FindElement(By.TagName("td"));
+                    var stockname = td.FindElement(By.ClassName("title"));
+
+                    System.Windows.Forms.MessageBox.Show(stockname.ToString());
+                    var data=td.FindElements(By.ClassName("number"));
+                    foreach (var cell in data)
+                    {
+                        System.Windows.Forms.MessageBox.Show(cell.Text.ToString());
+                    }
+                }
+            }
+
+
+
+            _driver.Quit();
+            _driver.Dispose();
+            _driverService.Dispose();            
 
         }
 
