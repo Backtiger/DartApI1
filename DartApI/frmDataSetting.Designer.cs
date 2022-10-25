@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.gbDataset = new System.Windows.Forms.GroupBox();
+            this.btnGetData = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkStockList = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,10 +42,11 @@
             this.LBoxPath = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             this.gbDataset.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,7 +61,7 @@
             // gbDataset
             // 
             this.gbDataset.AutoSize = true;
-            this.gbDataset.Controls.Add(this.button1);
+            this.gbDataset.Controls.Add(this.groupBox2);
             this.gbDataset.Controls.Add(this.groupBox1);
             this.gbDataset.Controls.Add(this.label1);
             this.gbDataset.Controls.Add(this.rdBS);
@@ -77,10 +79,20 @@
             this.gbDataset.TabStop = false;
             this.gbDataset.Text = "데이터 세팅";
             // 
+            // btnGetData
+            // 
+            this.btnGetData.Location = new System.Drawing.Point(27, 20);
+            this.btnGetData.Name = "btnGetData";
+            this.btnGetData.Size = new System.Drawing.Size(75, 23);
+            this.btnGetData.TabIndex = 11;
+            this.btnGetData.Text = "가져오기";
+            this.btnGetData.UseVisualStyleBackColor = true;
+            this.btnGetData.Click += new System.EventHandler(this.btnGetData_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chkStockList);
-            this.groupBox1.Location = new System.Drawing.Point(379, 178);
+            this.groupBox1.Location = new System.Drawing.Point(379, 141);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(136, 44);
             this.groupBox1.TabIndex = 10;
@@ -110,7 +122,7 @@
             // rdBS
             // 
             this.rdBS.AutoSize = true;
-            this.rdBS.Location = new System.Drawing.Point(379, 140);
+            this.rdBS.Location = new System.Drawing.Point(379, 119);
             this.rdBS.Name = "rdBS";
             this.rdBS.Size = new System.Drawing.Size(83, 16);
             this.rdBS.TabIndex = 8;
@@ -121,7 +133,7 @@
             // rdCF
             // 
             this.rdCF.AutoSize = true;
-            this.rdCF.Location = new System.Drawing.Point(379, 118);
+            this.rdCF.Location = new System.Drawing.Point(379, 97);
             this.rdCF.Name = "rdCF";
             this.rdCF.Size = new System.Drawing.Size(83, 16);
             this.rdCF.TabIndex = 7;
@@ -132,7 +144,7 @@
             // rdCE
             // 
             this.rdCE.AutoSize = true;
-            this.rdCE.Location = new System.Drawing.Point(379, 96);
+            this.rdCE.Location = new System.Drawing.Point(379, 75);
             this.rdCE.Name = "rdCE";
             this.rdCE.Size = new System.Drawing.Size(83, 16);
             this.rdCE.TabIndex = 6;
@@ -143,7 +155,7 @@
             // rdPL
             // 
             this.rdPL.AutoSize = true;
-            this.rdPL.Location = new System.Drawing.Point(379, 74);
+            this.rdPL.Location = new System.Drawing.Point(379, 53);
             this.rdPL.Name = "rdPL";
             this.rdPL.Size = new System.Drawing.Size(83, 16);
             this.rdPL.TabIndex = 5;
@@ -189,15 +201,15 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // button1
+            // groupBox2
             // 
-            this.button1.Location = new System.Drawing.Point(379, 355);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "확인";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.groupBox2.Controls.Add(this.btnGetData);
+            this.groupBox2.Location = new System.Drawing.Point(379, 191);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(136, 60);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "당일 증권 정보 ";
             // 
             // frmDataSetting
             // 
@@ -214,6 +226,7 @@
             this.gbDataset.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -233,6 +246,7 @@
         private System.Windows.Forms.RadioButton rdPL;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chkStockList;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGetData;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

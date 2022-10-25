@@ -42,9 +42,10 @@ namespace DartApI
 
             return dbc.ExcuteNonquery(query);
         }
-        public int Insert_MarketCapital(string StName, string sharescount, string totalshares, string per,string roe,string roa)
+        public int Insert_MarketData(string insertdata)
         {
-           string query =@" insert into dbo.MarketCapital(StName, makedate, sharescount, totalshares, per, roe, roa)values()";
+           string query = @" insert into dbo.Marketdata(makedate, disp  ,StName,todayprice ,lastdaychar , flucationlate,facevalue ,sharescount, totalshares, per, roe, roa)
+                              values( '" + DateTime.Today.Date+"','"+insertdata+"') ";
 
            return dbc.ExcuteNonquery(query);
         }

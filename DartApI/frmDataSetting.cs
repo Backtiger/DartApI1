@@ -193,11 +193,10 @@ namespace DartApI
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnGetData_Click(object sender, EventArgs e)
         {
             DataSet ds = new DataSet();
             ds.ToDayStockData();
-
         }
     }
 }

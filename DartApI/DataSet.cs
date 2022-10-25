@@ -22,7 +22,7 @@ namespace DartApI
         ChromeDriverService _driverService = null;
         ChromeOptions _options = null;
 
-
+        DAL DAL = new DAL();
 
         public DataTable Getmulticorps(string corpscode, string year, string reportcode)
         {
@@ -159,38 +159,68 @@ namespace DartApI
             ChromeDriver _driver = new ChromeDriver(_driverService ,_options); //크롬드라이버 다운받고 버젼 맞춰줘야함
             _driver.Navigate().GoToUrl("https://finance.naver.com/sise/sise_market_sum.naver?sosok=0");//네이버 종목정보 코스피 sosok=0 코스탁 sosok=1
 
+            _driver.FindElement(By.XPath("//*[@id='contentarea_left']/div[2]/form/div/div/div/a[2]")); //초기 항목으로 클릭
+
+            _driver.FindElement(By.Id("option1")).Click(); //거래량 체크박스 해제
+            _driver.FindElement(By.Id("option15")).Click(); //외국인비율 체크박스 해제
+
+            // _driver.FindElement(By.Id("option4")).Click(); //시가총액 체크박스 클릭
+            // _driver.FindElement(By.Id("option6")).Click(); //per 체크박스 클릭
+            //  _driver.FindElement(By.Id("option12")).Click(); //roe 체크박스 클릭
+            //  _driver.FindElement(By.Id("option21")).Click(); //상장주식수 체크박스 클릭
+
+            _driver.FindElement(By.Id("option18")).Click(); //roa 체크박스 선택
+            _driver.FindElement(By.Id("option22")).Click(); //매출액 체크박스 선택
+
+            _driver.FindElement(By.XPath("//*[@id='contentarea_left']/div[2]/form/div/div/div/a[1]")).Click();
+
             //마지막페이지 수를 가져오기위한 로직
             var href = _driver.FindElement(By.ClassName("pgRR"));
             var tagA = href.FindElement(By.TagName("a"));
             var strlink  = tagA.GetAttribute("href");
             int page = strlink.IndexOf("page=")+5;   //'page=' 길이가 5이기 때문에 5추가
-            int count=Convert.ToInt32(strlink.Substring(page,strlink.Length- page));
+            int PGcount = Convert.ToInt32(strlink.Substring(page,strlink.Length- page));
+
+            int count = 0; //한줄씩 인서트하기위한 갯수를 세기위한 변수 
 
             //마지막 페이지까지 데이터 가져오는 로직
-            for (int i = 1; i <= count; i++)
+            for (int i = 1; i <= PGcount; i++)
             {
                 _driver.Navigate().GoToUrl("https://finance.naver.com/sise/sise_market_sum.naver?sosok=0&page=" + i + "");//네이버 종목정보 코스피 sosok=0 코스탁 sosok=1
-
 
                 var table = _driver.FindElement(By.XPath("//*[@id='contentarea']/div[3]/table[1]")); //종목정보 테이블 xpath
                 var tbody = table.FindElement(By.TagName("tbody"));
                 var tr = tbody.FindElements(By.TagName("tr"));
 
+                //var table = _driver.FindElement(By.ClassName("type_2"));
+                //var tbody = table.FindElement(By.TagName("tbody"));
+
+                string Todaydata=null;
+
                 foreach (var dr in tr)
                 {
-                    var td = dr.FindElement(By.TagName("td"));
-                    var stockname = td.FindElement(By.ClassName("title"));
+                    var td = dr.FindElements(By.TagName("td"));
+                    //var stockname = td.FindElement(By.ClassName("title"));
 
-                    System.Windows.Forms.MessageBox.Show(stockname.ToString());
-                    var data=td.FindElements(By.ClassName("number"));
-                    foreach (var cell in data)
+                   // System.Windows.Forms.MessageBox.Show(stockname.ToString());
+                    //var data=td.FindElements(By.ClassName("number"));
+                    foreach (var cell in td)
                     {
-                        System.Windows.Forms.MessageBox.Show(cell.Text.ToString());
+                        count++;
+
+                        if (!string.IsNullOrEmpty(cell.Text))
+                        {
+                            Todaydata = cell.Text.ToString()+",";
+                            if(count%12==0)
+                            DAL.Insert_MarketData(Todaydata);
+                        }
+
+               
                     }
+            
                 }
+           
             }
-
-
 
             _driver.Quit();
             _driver.Dispose();
