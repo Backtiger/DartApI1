@@ -33,7 +33,7 @@ namespace DartApI
             catch(Exception ex)
             {             
                 con.Close();
-
+                System.Windows.Forms.MessageBox.Show(query);
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
                         

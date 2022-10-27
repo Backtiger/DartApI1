@@ -182,6 +182,7 @@ namespace DartApI
             int PGcount = Convert.ToInt32(strlink.Substring(page,strlink.Length- page));
 
             int count = 0; //한줄씩 인서트하기위한 갯수를 세기위한 변수 
+            int show = 0;
 
             //마지막 페이지까지 데이터 가져오는 로직
             for (int i = 1; i <= PGcount; i++)
@@ -196,9 +197,10 @@ namespace DartApI
                 //var tbody = table.FindElement(By.TagName("tbody"));
 
                 string Todaydata=null;
-
+                string test = null;
                 foreach (var dr in tr)
                 {
+                  
                     var td = dr.FindElements(By.TagName("td"));
                     //var stockname = td.FindElement(By.ClassName("title"));
 
@@ -206,13 +208,22 @@ namespace DartApI
                     //var data=td.FindElements(By.ClassName("number"));
                     foreach (var cell in td)
                     {
-                        count++;
-
+                     
+                        test = cell.Text.ToString();
+                       
+                        Console.WriteLine( test);
+                        Console.WriteLine("카운트:"+count);
                         if (!string.IsNullOrEmpty(cell.Text))
                         {
-                            Todaydata = cell.Text.ToString()+",";
-                            if(count%12==0)
-                            DAL.Insert_MarketData(Todaydata);
+                            count++;
+                            Todaydata += "'" + cell.Text.ToString().Replace(",", "") + "',";
+
+                            if (count % 12 == 0)
+                            {
+                                show += DAL.Insert_MarketData(Todaydata.TrimEnd(','));
+                                Todaydata = null;
+                                count = 0;
+                            }
                         }
 
                
@@ -221,7 +232,7 @@ namespace DartApI
                 }
            
             }
-
+            System.Windows.Forms.MessageBox.Show(show.ToString());
             _driver.Quit();
             _driver.Dispose();
             _driverService.Dispose();            

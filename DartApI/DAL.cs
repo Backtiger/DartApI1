@@ -42,12 +42,23 @@ namespace DartApI
 
             return dbc.ExcuteNonquery(query);
         }
+
+        public int Select_stockList( string corpname)
+        {
+            string query = @" select * from master.dbo.StockList where corp_name ";
+
+
+            return dbc.ExcuteNonquery(query);
+        }
+
+
+
         public int Insert_MarketData(string insertdata)
         {
-           string query = @" insert into dbo.Marketdata(makedate, disp  ,StName,todayprice ,lastdaychar , flucationlate,facevalue ,sharescount, totalshares, per, roe, roa)
-                              values( '" + DateTime.Today.Date+"','"+insertdata+"') ";
+           string query = @" insert into dbo.Marketdata(makedate, disp  ,StName,todayprice ,lastdaychar , flucationlate,facevalue ,sharescount, totalshares,totalsales , per, roe, roa)
+                              values( '" + DateTime.Now.ToString("yyyy-MM-dd")+"',"+insertdata+") ";
 
-           return dbc.ExcuteNonquery(query);
+            return dbc.ExcuteNonquery(query);
         }
     }
 }
