@@ -17,17 +17,24 @@ namespace DartApI
     {
         DataTable dt;
         DBconnect db = new DBconnect();
+        DAL dal = new DAL();
         public frmtest()
         {
             string path = null;
             //string sql = "select * from dbo.손익계산서";
             InitializeComponent();
             SetCombo();
+            Screenning_View();
             // ReadXML(path);
 
             // dt=  db.ExcuteDataAdapter(sql);
             // DtScreening.DataSource = dt;
+        }
 
+        public void Screenning_View()
+        {
+            dt = dal.SELECT_SCREENNING();
+            DtScreening.DataSource = dt;
         }
 
         public void getJason(string c_key)
@@ -82,10 +89,6 @@ namespace DartApI
                                     , xnl["stock_code"].InnerText.ToString()
                                     , xnl["modify_date"].InnerText.ToString());
 
-
-
-
-
                 //temp += xnl["corp_code"].InnerText;
                 //temp += xnl["corp_code"].InnerText;
                 //temp += xnl["corp_name"].InnerText;
@@ -94,24 +97,19 @@ namespace DartApI
                 //MessageBox.Show(temp);
                 //temp = null;
             }
-
-
             //foreach (DataRow row in dt.Rows)
             //{
             //    MessageBox.Show(row[0].ToString());
                 
             //}
            
-          
-           
             //dataGridView1.DataSource = dt;
 
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
-                                                            //초기 기업정보 xml 경로 세팅 로직
-            OpenFileDialog dialog = new OpenFileDialog();
+        {                                                          
+            OpenFileDialog dialog = new OpenFileDialog();  //초기 기업정보 xml 경로 세팅 로직
             dialog.ShowDialog();                            //파일찾는 화면 표기
             dialog.InitialDirectory = "C\\\\";              //기본 경로 c드라이브 설정
             string path = dialog.FileName;                  //선택파일 경로 세팅
@@ -146,16 +144,6 @@ namespace DartApI
             cboYear.Items.Add("2020");
             cboYear.Items.Add("2021");
             cboYear.Items.Add("2022");
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
 
         }
 

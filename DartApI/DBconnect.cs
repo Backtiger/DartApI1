@@ -41,7 +41,7 @@ namespace DartApI
 
         }
 
-        public DataTable ExcuteDataAdapter(string query)
+        public DataTable DataAdapter(string query)
         {
             try
             {

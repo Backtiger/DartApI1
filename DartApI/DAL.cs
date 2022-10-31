@@ -12,14 +12,34 @@ namespace DartApI
         DBconnect dbc = new DBconnect();
         DataTable dt = new DataTable();
 
-        public DataTable SelectInCome()
+        public int Select_stockList( string corpname)
         {
-            string query = "select * from IncomeStatement";
+            string query = @" select * from master.dbo.StockList where corp_name ";
 
-            dt = dbc.ExcuteDataAdapter(query);
 
-            return dt;
+            return dbc.ExcuteNonquery(query);
         }
+
+        public DataTable SELECT_SCREENNING()
+        {
+            string query = @" 
+                    select distinct 
+                           A.corp_code 
+                    	 , B.StName
+                         , B.makedate
+                    	 , B.sharescount
+                    	 , B.totalsales
+                    	 , B.totalshares 
+                    	 , B.per
+                    	 , B.roe
+                    	 , B.roa
+                      from master.dbo.StockList A
+                         , stock.dbo.Marketdata B
+                     where A.corp_name = b.StName  ";
+
+            return dbc.DataAdapter(query);
+        }
+
 
         public int Bulkinsert_IncomeStatement(string Name,string dbName)
         {
@@ -43,13 +63,7 @@ namespace DartApI
             return dbc.ExcuteNonquery(query);
         }
 
-        public int Select_stockList( string corpname)
-        {
-            string query = @" select * from master.dbo.StockList where corp_name ";
 
-
-            return dbc.ExcuteNonquery(query);
-        }
 
 
 

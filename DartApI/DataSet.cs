@@ -46,7 +46,7 @@ namespace DartApI
 
             xml.LoadXml(xml2);
 
-            XmlNodeList nodlist = xml.SelectNodes("/result/list"); //xml노드 셀렉 result 노드의 list노드들을 가져옴                     );
+            XmlNodeList nodlist = xml.SelectNodes("/result/list"); //xml노드 셀렉 result 노드의 list노드들을 가져옴 
 
             List<String> list = new List<string>(); //api 호출시 노드명이 없는 부분이 있어 비교를 위한 list선언
 
