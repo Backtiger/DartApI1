@@ -1,4 +1,4 @@
-﻿namespace DartApI
+﻿namespace Stockking
 {
     partial class frmfinancial
     {

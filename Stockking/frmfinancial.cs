@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DartApI
+namespace Stockking
 {
     public partial class frmfinancial : Form
     {
-        DataSet ds = new DataSet();
+        Datasetting ds = new Datasetting();
         public frmfinancial(string corpscode,string year,string report)
         {
             InitializeComponent();

@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace DartApI
+namespace Stockking
 {
-    public partial class frmDataSetting : Form
+    public partial class frmDatasettingting : Form
     {
-        DAL dal = new DAL();
+        SetQuery SetQuery = new SetQuery();
 
 
-        public frmDataSetting()
+        public frmDatasettingting()
         {
             InitializeComponent();
         }
@@ -85,7 +85,7 @@ namespace DartApI
 
         public void Bulkinsert()
         {
-            // dal.SelectInCome();
+            // SetQuery.SelectInCome();
         }
 
         private void btnPath_Click(object sender, EventArgs e)
@@ -94,7 +94,6 @@ namespace DartApI
 
             path = FilePath();
             LBoxPath.DataSource = path;
-
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -103,11 +102,11 @@ namespace DartApI
             string dbName = null;
             if (!chkStockList.Checked)
             {
-                if (rdBS.Checked) //재무상태
-                    dbName = "dbo.stFinacial";
+                if (rdCE.Checked) //재무상태
+                    dbName = "dbo.stFinancial";
                 if (rdPL.Checked) //손익계산
                     dbName = "dbo.InComeStatement";
-                if (rdCE.Checked) //자본변동
+                if (rdBS.Checked) //자본변동
                     dbName = "dbo.changeEquity";
                 if (rdCF.Checked) //현금흐름
                     dbName = "dbo.cashFlow";
@@ -122,8 +121,7 @@ namespace DartApI
                 }
                 else
                 {
-                    flag = dal.Bulkinsert_IncomeStatement(rw, dbName);
-         
+                    flag = SetQuery.Bulkinsert_IncomeStatement(rw, dbName);         
                 }
                 if (flag > 0)
                 {
@@ -148,7 +146,7 @@ namespace DartApI
             foreach (XmlNode xnl in xmlList)
             {
                 if (!string.IsNullOrEmpty(xnl["stock_code"].InnerText))
-                   rt= dal.Insert_stockList(xnl["corp_code"].InnerText.ToString()
+                   rt= SetQuery.Insert_stockList(xnl["corp_code"].InnerText.ToString()
                                         , xnl["corp_name"].InnerText.ToString()
                                         , xnl["stock_code"].InnerText.ToString()
                                         , xnl["modify_date"].InnerText.ToString());
@@ -195,8 +193,18 @@ namespace DartApI
 
         private void btnGetData_Click(object sender, EventArgs e)
         {
-            DataSet ds = new DataSet();
+            Datasetting ds = new Datasetting();
             ds.ToDayStockData();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           DataTable dt =  SetQuery.Select_stockList();
+            
+            foreach(DataRow dr in dt.Rows)
+            {               
+                SetQuery.insert_cash(dr["stock_code"].ToString());
+            }
         }
     }
 }

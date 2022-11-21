@@ -11,13 +11,13 @@ using System.Net;
 using System.Xml;
 
 
-namespace DartApI
+namespace Stockking
 {
     public partial class frmtest : Form
     {
         DataTable dt;
         DBconnect db = new DBconnect();
-        DAL dal = new DAL();
+        SetQuery SetQuery = new SetQuery();
         public frmtest()
         {
             string path = null;
@@ -33,7 +33,7 @@ namespace DartApI
 
         public void Screenning_View()
         {
-            dt = dal.SELECT_SCREENNING();
+            dt = SetQuery.SELECT_SCREENNING();
             DtScreening.DataSource = dt;
         }
 
@@ -62,7 +62,7 @@ namespace DartApI
             path = "C:\\\\Users\\\\cit\\\\Desktop\\\\corpCode\\\\CORPCODE.xml";
             XmlDocument xml = new XmlDocument();
             xml.Load(path);
-            DAL dal = new DAL();
+            SetQuery SetQuery = new SetQuery();
             
 
            // DataTable dt = new DataTable();
@@ -84,7 +84,7 @@ namespace DartApI
                                          , xnl["corp_name"].InnerText.ToString()
                                          , xnl["stock_code"].InnerText.ToString()
                                          , xnl["modify_date"].InnerText.ToString());
-                dal.Insert_stockList(xnl["corp_code"].InnerText.ToString()
+                SetQuery.Insert_stockList(xnl["corp_code"].InnerText.ToString()
                                     , xnl["corp_name"].InnerText.ToString()
                                     , xnl["stock_code"].InnerText.ToString()
                                     , xnl["modify_date"].InnerText.ToString());
@@ -149,7 +149,7 @@ namespace DartApI
 
         private void 데이터연동ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDataSetting frmData = new frmDataSetting();
+            frmDatasettingting frmData = new frmDatasettingting();
             frmData.ShowDialog();
         }
     }

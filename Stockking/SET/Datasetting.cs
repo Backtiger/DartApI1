@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace DartApI
+namespace Stockking
 {
-    class DataSet
+    class Datasetting
     {   //xml파싱 객체 선언
         WebClient wc = new WebClient();
         XmlDocument xml = new XmlDocument();
@@ -22,7 +22,7 @@ namespace DartApI
         ChromeDriverService _driverService = null;
         ChromeOptions _options = null;
 
-        DAL DAL = new DAL();
+        SetQuery SetQuery = new SetQuery();
 
         public DataTable Getmulticorps(string corpscode, string year, string reportcode)
         {
@@ -220,7 +220,7 @@ namespace DartApI
 
                             if (count % 12 == 0)
                             {
-                                show += DAL.Insert_MarketData(Todaydata.TrimEnd(','));
+                                show += SetQuery.Insert_MarketData(Todaydata.TrimEnd(','));
                                 Todaydata = null;
                                 count = 0;
                             }

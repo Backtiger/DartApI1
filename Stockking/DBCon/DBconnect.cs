@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DartApI
+namespace Stockking
 {
     class DBconnect
     {
