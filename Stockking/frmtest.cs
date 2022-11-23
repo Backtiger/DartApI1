@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Xml;
-
+using Stockking.GET;
 
 namespace Stockking
 {
@@ -18,6 +18,7 @@ namespace Stockking
         DataTable dt;
         DBconnect db = new DBconnect();
         SetQuery SetQuery = new SetQuery();
+        
         public frmtest()
         {
             string path = null;
@@ -33,8 +34,7 @@ namespace Stockking
 
         public void Screenning_View()
         {
-            dt = SetQuery.SELECT_SCREENNING();
-            DtScreening.DataSource = dt;
+           
         }
 
         public void getJason(string c_key)

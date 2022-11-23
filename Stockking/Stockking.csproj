@@ -76,8 +76,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GET\GetQuery.cs" />
-    <Compile Include="SET\SetQuery.cs" />
+    <Compile Include="GET\GetFacturing.cs" />
+    <Compile Include="GET\InterfaceGet.cs" />
+    <Compile Include="GET\Query\GetQuery.cs" />
+    <Compile Include="SET\InterfaceSet.cs" />
+    <Compile Include="SET\SetFacturing.cs" />
+    <Compile Include="SET\Query\SetQuery.cs" />
     <Compile Include="SET\Datasetting.cs" />
     <Compile Include="DBCon\DBconnect.cs" />
     <Compile Include="frmtest.cs">
