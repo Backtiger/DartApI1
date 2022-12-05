@@ -18,7 +18,9 @@ namespace Stockking
         DataTable dt;
         DBconnect db = new DBconnect();
         SetQuery SetQuery = new SetQuery();
-        
+
+        GetFacturing GetFacturing = new GetFacturing();
+
         public frmtest()
         {
             string path = null;
@@ -34,7 +36,9 @@ namespace Stockking
 
         public void Screenning_View()
         {
-           
+            GetFacturing.ALLDATA().GetAlldata(); ;
+
+            GetFacturing.dt;
         }
 
         public void getJason(string c_key)
@@ -151,6 +155,11 @@ namespace Stockking
         {
             frmDatasettingting frmData = new frmDatasettingting();
             frmData.ShowDialog();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

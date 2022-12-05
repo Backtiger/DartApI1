@@ -9,19 +9,27 @@ namespace Stockking.GET
 {
     class GetFacturing
     {
-        private static GetFacturing Alldata;
+        private static GetFacturing Alldata =null;
+        static DataTable dt = new DataTable();
 
         GetQuery getQuery = new GetQuery();
-        DataTable dt = new DataTable();
 
-        private void GetAlldata()
-        {
-            dt = getQuery.AlltiemScreennig();         
-        }
+
+
         public static GetFacturing ALLDATA()
         {
-            if()
+            if (Alldata == null)
+                Alldata = new GetFacturing();
+
+            return Alldata;
         }
+
+        public void GetAlldata()
+        {
+           dt = getQuery.AlltiemScreennig();
+      
+        }
+
 
 
         private DataTable Calculation_fourQuater()
