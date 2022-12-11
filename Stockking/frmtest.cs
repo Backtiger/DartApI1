@@ -27,19 +27,14 @@ namespace Stockking
             //string sql = "select * from dbo.손익계산서";
             InitializeComponent();
             SetCombo();
-            Screenning_View();
+            GetFacturing.ALLDATA();
+
             // ReadXML(path);
 
             // dt=  db.ExcuteDataAdapter(sql);
             // DtScreening.DataSource = dt;
         }
-
-        public void Screenning_View()
-        {
-            GetFacturing.ALLDATA().GetAlldata(); ;
-
-            GetFacturing.dt;
-        }
+    
 
         public void getJason(string c_key)
         {
@@ -159,7 +154,8 @@ namespace Stockking
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            
+            DtScreening.DataSource= GetFacturing.Calculation();
         }
     }
 }
