@@ -32,26 +32,21 @@ namespace Stockking.GET
             
             DataTable dtscreen = new DataTable();
 
-            dt.Columns.Add("qoq");
-            dt.Columns.Add("yoy");
+            dtscreen = dt.Copy();
 
-            foreach (DataRow dr in dt.Rows)
-            {               
-                    double qoq = comparison(Convert.ToDouble(dr["EndQuater"]), Convert.ToDouble(dr["EndFirstPeroid"]));
-                    dr["qoq"] = qoq;
-                
-                    double yoy = comparison(Convert.ToDouble(dr["AccQuater"]), Convert.ToDouble(dr["Lastyear"]));
-                    dr["yoy"] = yoy;
-
-                
-                dtscreen.ImportRow(dr);
-            }
-            dtscreen.AcceptChanges();
+            dtscreen.Columns.Add("qoq");
+            dtscreen.Columns.Add("yoy");
 
             foreach (DataRow dr in dtscreen.Rows)
-            {
-                string datt= dr["qoq"].ToString();
+            {               
+                double qoq = comparison(Convert.ToDouble(dr["EndQuater"]), Convert.ToDouble(dr["EndFirstPeroid"]));
+                dr["qoq"] = qoq;
+                
+                double yoy = comparison(Convert.ToDouble(dr["AccQuater"]), Convert.ToDouble(dr["Lastyear"]));
+                dr["yoy"] = yoy;
             }
+
+            
 
             return dtscreen;
         }
@@ -61,7 +56,7 @@ namespace Stockking.GET
             double dod = 0;
             if (afterward != 0 && previous != 0)
             {
-                dod = (afterward - previous) / previous;
+                dod = (afterward - previous) / previous ;
                 dod = Convert.ToDouble(dod.ToString("F1"));
             }
 

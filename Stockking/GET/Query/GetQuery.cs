@@ -72,7 +72,7 @@ namespace Stockking.GET
         public DataTable AlltiemScreennig()
         {
             DataTable dt = new DataTable();
-            string squery = @"						     SELECT A.STNAME
+            string squery = @"	SELECT A.STNAME
                               , A.STOCKCODE
                          	  , A.RPKIND
                               , LEFT(A.CLOSINGDATE,4) ClosingDate
