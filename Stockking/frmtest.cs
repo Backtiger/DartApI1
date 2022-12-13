@@ -135,14 +135,10 @@ namespace Stockking
             cboReport.DisplayMember = "Value";
             cboReport.ValueMember = "Key";
 
-            cboYear.Items.Add("2015");
-            cboYear.Items.Add("2016");
-            cboYear.Items.Add("2017");
-            cboYear.Items.Add("2018");
-            cboYear.Items.Add("2019");
-            cboYear.Items.Add("2020");
-            cboYear.Items.Add("2021");
-            cboYear.Items.Add("2022");
+        }
+        public void GridviewSet()
+        {
+            DataGridViewComboBoxColumn comboboxCol = new DataGridViewComboBoxColumn();
 
         }
 
@@ -155,7 +151,9 @@ namespace Stockking
         private void btnSearch_Click(object sender, EventArgs e)
         {
             
-            DtScreening.DataSource= GetFacturing.Calculation();
+            DgScreening.DataSource= GetFacturing.Calculation();
         }
+
+ 
     }
 }
