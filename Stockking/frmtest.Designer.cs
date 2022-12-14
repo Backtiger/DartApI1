@@ -48,6 +48,12 @@
             this.TabScreenning = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.DgScreening = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.DgCondition = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.tabStockName = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,21 +61,22 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.DgCondition = new System.Windows.Forms.DataGridView();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Colcondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colsign = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colsubvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.TabMain.SuspendLayout();
             this.TabScreenning.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgScreening)).BeginInit();
-            this.tabStockName.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgCondition)).BeginInit();
+            this.tabStockName.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -245,6 +252,74 @@
             this.DgScreening.Size = new System.Drawing.Size(1006, 639);
             this.DgScreening.TabIndex = 0;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.dateTimePicker2);
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.button6);
+            this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.DgCondition);
+            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(1015, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(416, 639);
+            this.panel1.TabIndex = 1;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(277, 370);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(65, 23);
+            this.button6.TabIndex = 38;
+            this.button6.Text = "줄 삭제";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(347, 370);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(65, 23);
+            this.button5.TabIndex = 37;
+            this.button5.Text = "줄 추가";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // DgCondition
+            // 
+            this.DgCondition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgCondition.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Colcondition,
+            this.Colsign,
+            this.Colvalue,
+            this.Colsubvalue});
+            this.DgCondition.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.DgCondition.Location = new System.Drawing.Point(0, 399);
+            this.DgCondition.Name = "DgCondition";
+            this.DgCondition.RowTemplate.Height = 23;
+            this.DgCondition.Size = new System.Drawing.Size(416, 240);
+            this.DgCondition.TabIndex = 36;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(251, 9);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(65, 23);
+            this.button4.TabIndex = 35;
+            this.button4.Text = "초기화";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(322, 9);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(71, 23);
+            this.btnSearch.TabIndex = 34;
+            this.btnSearch.Text = "조회";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // tabStockName
             // 
             this.tabStockName.Controls.Add(this.button3);
@@ -262,7 +337,7 @@
             this.tabStockName.Location = new System.Drawing.Point(4, 22);
             this.tabStockName.Name = "tabStockName";
             this.tabStockName.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStockName.Size = new System.Drawing.Size(1286, 651);
+            this.tabStockName.Size = new System.Drawing.Size(1440, 651);
             this.tabStockName.TabIndex = 0;
             this.tabStockName.Text = "종목리스트";
             this.tabStockName.UseVisualStyleBackColor = true;
@@ -307,65 +382,48 @@
             this.Column5.HeaderText = "Column5";
             this.Column5.Name = "Column5";
             // 
-            // btnSearch
+            // dateTimePicker1
             // 
-            this.btnSearch.Location = new System.Drawing.Point(322, 9);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(71, 23);
-            this.btnSearch.TabIndex = 34;
-            this.btnSearch.Text = "조회";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.dateTimePicker1.Location = new System.Drawing.Point(205, 334);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(160, 21);
+            this.dateTimePicker1.TabIndex = 41;
             // 
-            // button4
+            // dateTimePicker2
             // 
-            this.button4.Location = new System.Drawing.Point(251, 9);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(65, 23);
-            this.button4.TabIndex = 35;
-            this.button4.Text = "초기화";
-            this.button4.UseVisualStyleBackColor = true;
+            this.dateTimePicker2.Location = new System.Drawing.Point(21, 334);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(160, 21);
+            this.dateTimePicker2.TabIndex = 42;
             // 
-            // panel1
+            // label5
             // 
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.DgCondition);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(1015, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(416, 639);
-            this.panel1.TabIndex = 1;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 316);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 12);
+            this.label5.TabIndex = 43;
+            this.label5.Text = "날짜 선택";
             // 
-            // DgCondition
+            // Colcondition
             // 
-            this.DgCondition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgCondition.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DgCondition.Location = new System.Drawing.Point(0, 399);
-            this.DgCondition.Name = "DgCondition";
-            this.DgCondition.RowTemplate.Height = 23;
-            this.DgCondition.Size = new System.Drawing.Size(416, 240);
-            this.DgCondition.TabIndex = 36;
+            this.Colcondition.HeaderText = "조건";
+            this.Colcondition.Name = "Colcondition";
             // 
-            // button5
+            // Colsign
             // 
-            this.button5.Location = new System.Drawing.Point(347, 370);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(65, 23);
-            this.button5.TabIndex = 37;
-            this.button5.Text = "줄 추가";
-            this.button5.UseVisualStyleBackColor = true;
+            this.Colsign.HeaderText = "등호";
+            this.Colsign.Name = "Colsign";
             // 
-            // button6
+            // Colvalue
             // 
-            this.button6.Location = new System.Drawing.Point(277, 370);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(65, 23);
-            this.button6.TabIndex = 38;
-            this.button6.Text = "줄 삭제";
-            this.button6.UseVisualStyleBackColor = true;
+            this.Colvalue.HeaderText = "값";
+            this.Colvalue.Name = "Colvalue";
+            // 
+            // Colsubvalue
+            // 
+            this.Colsubvalue.HeaderText = "비교값";
+            this.Colsubvalue.Name = "Colsubvalue";
             // 
             // frmtest
             // 
@@ -383,11 +441,12 @@
             this.TabScreenning.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgScreening)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgCondition)).EndInit();
             this.tabStockName.ResumeLayout(false);
             this.tabStockName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DgCondition)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,6 +486,13 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Colcondition;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Colsign;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Colvalue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Colsubvalue;
     }
 }
 

@@ -28,7 +28,7 @@ namespace Stockking
             InitializeComponent();
             SetCombo();
             GetFacturing.ALLDATA();
-
+            MakeCboGrid(DgCondition, 0);
             // ReadXML(path);
 
             // dt=  db.ExcuteDataAdapter(sql);
@@ -149,11 +149,20 @@ namespace Stockking
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
-        {
-            
+        {            
             DgScreening.DataSource= GetFacturing.Calculation();
         }
 
+        private void MakeCboGrid(DataGridView gridView, int col, string headername)
+        {
+            DataGridViewComboBoxColumn cbocol = new DataGridViewComboBoxColumn();
+
+            cbocol.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
+            cbocol.HeaderText = headername;
+
+            gridView.Columns.Insert(col, cbocol);
+            
+        }
  
     }
 }
