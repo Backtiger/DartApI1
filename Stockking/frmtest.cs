@@ -28,7 +28,8 @@ namespace Stockking
             InitializeComponent();
             SetCombo();
             GetFacturing.ALLDATA();
-            MakeCboGrid(DgCondition, 0);
+
+            MakeCboGrid(DgCondition);
             // ReadXML(path);
 
             // dt=  db.ExcuteDataAdapter(sql);
@@ -125,6 +126,8 @@ namespace Stockking
         }
         public void SetCombo()
         {
+                     
+
             Dictionary<string, string> combodata = new Dictionary<string, string>();
             combodata.Add("11013", "1분기 보고서");
             combodata.Add("11012", "반기 보고서");
@@ -134,11 +137,6 @@ namespace Stockking
             cboReport.DataSource = new BindingSource(combodata ,null);
             cboReport.DisplayMember = "Value";
             cboReport.ValueMember = "Key";
-
-        }
-        public void GridviewSet()
-        {
-            DataGridViewComboBoxColumn comboboxCol = new DataGridViewComboBoxColumn();
 
         }
 
@@ -153,16 +151,33 @@ namespace Stockking
             DgScreening.DataSource= GetFacturing.Calculation();
         }
 
-        private void MakeCboGrid(DataGridView gridView, int col, string headername)
+
+        private void MakeCboGrid(DataGridView gridView)
         {
-            DataGridViewComboBoxColumn cbocol = new DataGridViewComboBoxColumn();
+            DataGridViewComboBoxCell cbocell = new DataGridViewComboBoxCell();
 
-            cbocol.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
-            cbocol.HeaderText = headername;
+            cbocell.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
+            //cbocell.HeaderText = gridView
+            List<string> list = new List<string>();
 
-            gridView.Columns.Insert(col, cbocol);
-            
+            foreach (var enumlist in Enum.GetValues(typeof(GetFacturing.incomeitemstat))) {
+
+                cbocell.Items.Add(enumlist);
+            }
+
+            int nRow = gridView.Rows.Add(null,null,null,null);
+
+            gridView.Rows[nRow].Cells[0] = cbocell;
+
+            //gridView.Columns.Insert(col, cbocol);
+            //gridView.Rows.Add();
+
+
         }
- 
+
+        private void btn_AddLine_Click(object sender, EventArgs e)
+        {
+            MakeCboGrid(DgCondition);
+        }
     }
 }

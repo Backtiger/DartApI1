@@ -10,10 +10,43 @@ namespace Stockking.GET
     class GetFacturing
     {
         private static GetFacturing Alldata =null;
-        DataTable dt = new DataTable();
+        DataTable dtincome = new DataTable();
+        DataTable dtcash = new DataTable();
+        DataTable dtstat = new DataTable();
+
 
         GetQuery getQuery = new GetQuery();
-
+        public enum incomeitemstat
+        {
+            매출 ,
+            영업이익,
+            총포괄손익,
+            당기순이익,
+            매출원가,
+            판관비,
+        }
+        enum cashitemstat
+        {
+            영업활동현금흐름,
+            투자활동현금흐름,
+            무형자산처분,
+            재무활동현금흐름,
+            유형자산취득,
+            무형자산취득,                
+        }
+        enum statitemstat
+        {
+          자산총계,
+          유동부채,
+          매출채권,
+          재고자산,
+          유동자산,
+          부채총계,
+          부채,
+          비유동자산,
+          자산,
+          자본과부채총계
+        }
 
 
         public GetFacturing ALLDATA()
@@ -21,7 +54,7 @@ namespace Stockking.GET
             if (Alldata == null)
                 Alldata = new GetFacturing();
 
-            dt = getQuery.AlltiemScreennig();
+            dtincome = getQuery.AlltiemScreennig();
 
             return Alldata;
         }
@@ -32,7 +65,7 @@ namespace Stockking.GET
             
             DataTable dtscreen = new DataTable();
 
-            dtscreen = dt.Copy();
+            dtscreen = dtincome.Copy();
 
             dtscreen.Columns.Add("qoq");
             dtscreen.Columns.Add("yoy");
@@ -62,13 +95,6 @@ namespace Stockking.GET
 
             return dod;
         }
-
-
-
-
-
-
-
 
         // category & column type은 선택적 파라미터로 설정하고, 디폴트 값은 null로 처리
 
