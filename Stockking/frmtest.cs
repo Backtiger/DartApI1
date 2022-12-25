@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Xml;
 using Stockking.GET;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Stockking
 {
@@ -29,7 +30,7 @@ namespace Stockking
             SetCombo();
             GetFacturing.ALLDATA();
 
-            MakeCboGrid(DgCondition);
+            MakeCboGrid(DgCondition,0);
             // ReadXML(path);
 
             // dt=  db.ExcuteDataAdapter(sql);
@@ -152,12 +153,12 @@ namespace Stockking
         }
 
 
-        private void MakeCboGrid(DataGridView gridView)
+        private void MakeCboGrid(DataGridView gridView , int Col)
         {
             DataGridViewComboBoxCell cbocell = new DataGridViewComboBoxCell();
 
             cbocell.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
-            //cbocell.HeaderText = gridView
+
             List<string> list = new List<string>();
 
             foreach (var enumlist in Enum.GetValues(typeof(GetFacturing.incomeitemstat))) {
@@ -165,19 +166,27 @@ namespace Stockking
                 cbocell.Items.Add(enumlist);
             }
 
-            int nRow = gridView.Rows.Add(null,null,null,null);
-
-            gridView.Rows[nRow].Cells[0] = cbocell;
-
-            //gridView.Columns.Insert(col, cbocol);
-            //gridView.Rows.Add();
+            int nRow = gridView.Rows.Add();
+           
+            gridView.Rows[nRow].Cells[Col] = cbocell;
+            gridView.Rows[nRow].Cells[Col].Value = cbocell.Items[0];
 
 
         }
 
         private void btn_AddLine_Click(object sender, EventArgs e)
         {
-            MakeCboGrid(DgCondition);
+            MakeCboGrid(DgCondition,0);
         }
+
+        private void DgCondition_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (DgCondition.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewComboBoxCell)
+            {      
+
+            }
+        }
+
+
     }
 }

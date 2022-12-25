@@ -14,8 +14,10 @@ namespace Stockking.GET
         DataTable dtcash = new DataTable();
         DataTable dtstat = new DataTable();
 
+        public string[] equalsign = { "=", "<=", ">=", ">", "<", "~" };
 
         GetQuery getQuery = new GetQuery();
+
         public enum incomeitemstat
         {
             매출 ,
@@ -24,7 +26,13 @@ namespace Stockking.GET
             당기순이익,
             매출원가,
             판관비,
+            qoq,
+            yoy
         }
+        
+
+
+
         enum cashitemstat
         {
             영업활동현금흐름,
@@ -32,7 +40,10 @@ namespace Stockking.GET
             무형자산처분,
             재무활동현금흐름,
             유형자산취득,
-            무형자산취득,                
+            무형자산취득,     
+            qoq,
+            yoy
+                
         }
         enum statitemstat
         {
@@ -45,8 +56,11 @@ namespace Stockking.GET
           부채,
           비유동자산,
           자산,
-          자본과부채총계
+          자본과부채총계,
+          qoq,
+          yoy             
         }
+    
 
 
         public GetFacturing ALLDATA()

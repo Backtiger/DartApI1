@@ -49,14 +49,12 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.DgScreening = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboLastDate = new System.Windows.Forms.ComboBox();
+            this.cboFirstDate = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_deleteLine = new System.Windows.Forms.Button();
             this.btn_AddLine = new System.Windows.Forms.Button();
             this.DgCondition = new System.Windows.Forms.DataGridView();
-            this.Colcondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colsign = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Colsubvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button4 = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tabStockName = new System.Windows.Forms.TabPage();
@@ -66,8 +64,10 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cboFirstDate = new System.Windows.Forms.ComboBox();
-            this.cboLastDate = new System.Windows.Forms.ComboBox();
+            this.Colcondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colsign = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Colsubvalue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.TabMain.SuspendLayout();
             this.TabScreenning.SuspendLayout();
@@ -268,6 +268,22 @@
             this.panel1.Size = new System.Drawing.Size(416, 639);
             this.panel1.TabIndex = 1;
             // 
+            // cboLastDate
+            // 
+            this.cboLastDate.FormattingEnabled = true;
+            this.cboLastDate.Location = new System.Drawing.Point(101, 370);
+            this.cboLastDate.Name = "cboLastDate";
+            this.cboLastDate.Size = new System.Drawing.Size(79, 20);
+            this.cboLastDate.TabIndex = 45;
+            // 
+            // cboFirstDate
+            // 
+            this.cboFirstDate.FormattingEnabled = true;
+            this.cboFirstDate.Location = new System.Drawing.Point(8, 370);
+            this.cboFirstDate.Name = "cboFirstDate";
+            this.cboFirstDate.Size = new System.Drawing.Size(77, 20);
+            this.cboFirstDate.TabIndex = 44;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -312,26 +328,7 @@
             this.DgCondition.RowTemplate.Height = 23;
             this.DgCondition.Size = new System.Drawing.Size(416, 240);
             this.DgCondition.TabIndex = 36;
-            // 
-            // Colcondition
-            // 
-            this.Colcondition.HeaderText = "조건";
-            this.Colcondition.Name = "Colcondition";
-            // 
-            // Colsign
-            // 
-            this.Colsign.HeaderText = "등호";
-            this.Colsign.Name = "Colsign";
-            // 
-            // Colvalue
-            // 
-            this.Colvalue.HeaderText = "값";
-            this.Colvalue.Name = "Colvalue";
-            // 
-            // Colsubvalue
-            // 
-            this.Colsubvalue.HeaderText = "비교값";
-            this.Colsubvalue.Name = "Colsubvalue";
+            this.DgCondition.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgCondition_CellMouseDown);
             // 
             // button4
             // 
@@ -414,21 +411,26 @@
             this.Column5.HeaderText = "Column5";
             this.Column5.Name = "Column5";
             // 
-            // cboFirstDate
+            // Colcondition
             // 
-            this.cboFirstDate.FormattingEnabled = true;
-            this.cboFirstDate.Location = new System.Drawing.Point(8, 370);
-            this.cboFirstDate.Name = "cboFirstDate";
-            this.cboFirstDate.Size = new System.Drawing.Size(77, 20);
-            this.cboFirstDate.TabIndex = 44;
+            this.Colcondition.HeaderText = "조건";
+            this.Colcondition.Name = "Colcondition";
             // 
-            // cboLastDate
+            // Colsign
             // 
-            this.cboLastDate.FormattingEnabled = true;
-            this.cboLastDate.Location = new System.Drawing.Point(101, 370);
-            this.cboLastDate.Name = "cboLastDate";
-            this.cboLastDate.Size = new System.Drawing.Size(79, 20);
-            this.cboLastDate.TabIndex = 45;
+            this.Colsign.HeaderText = "등호";
+            this.Colsign.Name = "Colsign";
+            // 
+            // Colvalue
+            // 
+            this.Colvalue.HeaderText = "값";
+            this.Colvalue.Name = "Colvalue";
+            // 
+            // Colsubvalue
+            // 
+            this.Colsubvalue.HeaderText = "비교값";
+            this.Colsubvalue.Name = "Colsubvalue";
+            this.Colsubvalue.ReadOnly = true;
             // 
             // frmtest
             // 
@@ -492,12 +494,12 @@
         private System.Windows.Forms.Button btn_deleteLine;
         private System.Windows.Forms.Button btn_AddLine;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cboLastDate;
+        private System.Windows.Forms.ComboBox cboFirstDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colcondition;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colsign;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colvalue;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colsubvalue;
-        private System.Windows.Forms.ComboBox cboLastDate;
-        private System.Windows.Forms.ComboBox cboFirstDate;
     }
 }
 
