@@ -80,7 +80,6 @@
     <Compile Include="GET\InterfaceGet.cs" />
     <Compile Include="GET\Query\GetQuery.cs" />
     <Compile Include="SET\InterfaceSet.cs" />
-    <Compile Include="SET\SetFacturing.cs" />
     <Compile Include="GET\Query\SetQuery.cs" />
     <Compile Include="SET\Datasetting.cs" />
     <Compile Include="DBCon\DBconnect.cs" />

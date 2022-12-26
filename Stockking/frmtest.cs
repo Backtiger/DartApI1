@@ -23,14 +23,12 @@ namespace Stockking
         GetFacturing GetFacturing = new GetFacturing();
 
         public frmtest()
-        {
-            string path = null;
-            //string sql = "select * from dbo.손익계산서";
+        {   
             InitializeComponent();
             SetCombo();
             GetFacturing.ALLDATA();
 
-            MakeCboGrid(DgCondition,0);
+            MakeCboGrid(DgCondition);
             // ReadXML(path);
 
             // dt=  db.ExcuteDataAdapter(sql);
@@ -98,6 +96,7 @@ namespace Stockking
                 //MessageBox.Show(temp);
                 //temp = null;
             }
+
             //foreach (DataRow row in dt.Rows)
             //{
             //    MessageBox.Show(row[0].ToString());
@@ -153,40 +152,78 @@ namespace Stockking
         }
 
 
-        private void MakeCboGrid(DataGridView gridView , int Col)
+        private void MakeCboGrid(DataGridView gridView)
         {
             DataGridViewComboBoxCell cbocell = new DataGridViewComboBoxCell();
-
+            DataGridViewComboBoxCell cbocell2 = new DataGridViewComboBoxCell();
             cbocell.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
 
-            List<string> list = new List<string>();
 
             foreach (var enumlist in Enum.GetValues(typeof(GetFacturing.incomeitemstat))) {
 
                 cbocell.Items.Add(enumlist);
             }
-
-            int nRow = gridView.Rows.Add();
            
-            gridView.Rows[nRow].Cells[Col] = cbocell;
-            gridView.Rows[nRow].Cells[Col].Value = cbocell.Items[0];
+            gridView.Rows.Insert(gridView.Rows.Count);
+
+            int NowRowIndex = gridView.Rows.Count - 1;
+
+            gridView.Rows[NowRowIndex].Cells[3].ReadOnly = true;
+            gridView.Rows[NowRowIndex].Cells[3].Style.BackColor = Color.Gray;
 
 
+            gridView.Rows[NowRowIndex].Cells[0] = cbocell;
+            gridView.Rows[NowRowIndex].Cells[0].Value = cbocell.Items[0];
+
+            foreach (string item in GetFacturing.equalsign)
+            {
+                cbocell2.Items.Add(item);
+            }
+
+            gridView.Rows[NowRowIndex].Cells[1] = cbocell2;
+            gridView.Rows[NowRowIndex].Cells[1].Value = cbocell2.Items[0];
+
+            
         }
 
         private void btn_AddLine_Click(object sender, EventArgs e)
         {
-            MakeCboGrid(DgCondition,0);
+            MakeCboGrid(DgCondition);
+        }         
+
+        private void DgCondition_DataError_1(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.Cancel = true;
         }
 
-        private void DgCondition_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        private void DgCondition_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (DgCondition.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewComboBoxCell)
-            {      
-
+            System.Windows.Forms.ComboBox combo = e.Control as System.Windows.Forms.ComboBox;
+            
+            if (combo != null)
+            {
+                combo.SelectedIndexChanged -= new EventHandler(ComboBox_SelectedIndexChanged);
+                combo.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
             }
         }
 
+        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ComboBox cb = (System.Windows.Forms.ComboBox)sender;
+            String item = cb.Text;
+            int Rowindex = DgCondition.CurrentCell.RowIndex;
 
+            if (item == "~")
+            {
+                DgCondition.Rows[Rowindex].Cells[3].ReadOnly = false;
+                DgCondition.Rows[Rowindex].Cells[3].Style.BackColor = Color.White;
+            }
+            else
+            {
+                DgCondition.Rows[Rowindex].Cells[3].Value = null;
+                DgCondition.Rows[Rowindex].Cells[3].ReadOnly = true;
+                DgCondition.Rows[Rowindex].Cells[3].Style.BackColor = Color.Gray;
+            }     
+        }
     }
 }

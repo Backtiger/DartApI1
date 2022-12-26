@@ -72,66 +72,88 @@ namespace Stockking.GET
         public DataTable AlltiemScreennig()
         {
             DataTable dt = new DataTable();
-            string squery = @"	SELECT A.STNAME
-                              , A.STOCKCODE
-                         	  , A.RPKIND
-                              , LEFT(A.CLOSINGDATE,4) ClosingDate
-                         	  , A.ENDQUATER
-							  , a.Accquater						
-							  , A.EndFirstPeroid
-							  , a.Lastyear
-							  , A.ItemName
-							  , A.ITEMCODE
+            string squery = @"					      SELECT AC.STOCKCODE
+                         	   , AC.STNAME
+							   , AC.RPKIND
+                               , AC.CLOSINGDATE AS CLOSINGDATE
+                         	   , AC.ENDQUATER
+							   , AC.ENDFIRSTPEROID
+							   , AC.LASTYEAR
+							   , AC.ITEMNAME
+							   , AC.ITEMCODE						
+							   , AC.ITEM_STAT
+							   , ISNULL(LAG(AC.ENDQUATER)OVER(PARTITION BY AC.STNAME,AC.ITEM_STAT ORDER BY AC.STNAME, AC.ITEM_STAT,AC.CLOSINGDATE,AC.RPKIND),0)	AS LASTQUATER							 								
+						    FROM
+						 (SELECT A.STNAME
+						       , A.STOCKCODE
+                         	   , A.RPKIND
+                               , A.CLOSINGDATE 
+                         	   , A.ENDQUATER
+							   , A.ENDFIRSTPEROID
+							   , A.LASTYEARQUATER AS LASTYEAR
+							   , A.ITEMNAME
+							   , A.ITEMCODE
+							   , A.ITEM_STAT
+							   , A.STKIND_CODE
                            FROM DBO.INCOMESTATEMENT_Q1 A
                           WHERE  STKIND_CODE ='연결' 
-						   and stname = '경방'
-						    AND A.item_stat IS NOT NULL
+						    AND A.ITEM_STAT IS NOT NULL
                           UNION ALL
-                         SELECT b.STNAME
+                         SELECT B.STNAME
                               , B.STOCKCODE
                          	  , B.RPKIND
-                              , LEFT(B.CLOSINGDATE,4) ClosingDate
+                              , B.CLOSINGDATE							
                          	  , B.ENDQUATER
-							  , b.Accquater
-							  , b.EndFirstPeroid
-							  , b.Lastyear
-							  , B.ItemName
+							  , B.ENDFIRSTPEROID
+							  , B.LASTYEARQUATER AS LASTYEAR
+							  , B.ITEMNAME
 							   , B.ITEMCODE
-                           FROM DBO.INCOMESTATEMENT_Q2 B
+							     , B.ITEM_STAT
+								 , B.STKIND_CODE
+								 FROM DBO.INCOMESTATEMENT_Q2 B
                           WHERE STKIND_CODE ='연결'
-						   and stname = '경방'
-						    AND B.item_stat IS NOT NULL
+						    AND B.ITEM_STAT IS NOT NULL
                           UNION ALL
                          SELECT C.STNAME						      
                               , C.STOCKCODE
                          	  , C.RPKIND
-                              , LEFT(C.CLOSINGDATE,4) ClosingDate
+                              , C.CLOSINGDATE
                          	  , C.ENDQUATER
-							  , c.Accquater
-							  , c.EndFirstPeroid
-							  , c.Lastyear
-							  , C.ItemName
+							  , C.ENDFIRSTPEROID
+							  , C.LASTYEARQUATER AS LASTYEAR
+							  , C.ITEMNAME
 							  , C.ITEMCODE
+							    , C.ITEM_STAT
+								, C.STKIND_CODE
                            FROM DBO.INCOMESTATEMENT_Q3 C
                           WHERE STKIND_CODE ='연결'
-						   and stname = '경방'
-						    AND C.item_stat IS NOT NULL
-						  UNION ALL						 
-						 select    b.StName
-								 , B.StockCode
-								 , b.rpKind
-								 , LEFT(B.ClosingDate,4) AS CLOSINGDATE
-								 , B.endquater	
-								 , b.Accquater
-								 , b.EndFirstPeroid
-								 , b.Lastyear
-								 , b.ItemCode	 
-								 , b.ItemName	 
-							  from dbo.IncomeStatement_all_Q4 b 
-							 WHERE B.STKIND_CODE ='연결'
-							   and stname = '경방'
-						    AND B.item_stat IS NOT NULL
-						";
+						    AND C.ITEM_STAT IS NOT NULL
+						  UNION ALL
+						 SELECT * FROM
+					    (SELECT B.STNAME
+			   				  , B.STOCKCODE
+			   				  , B.RPKIND
+			   				  , B.CLOSINGDATE
+			   				  , B.ACCQUATER- ABS(ISNULL(A.ACCQUATER,0)) AS ENDQUATER
+			   				  , B.ENDFIRSTPEROID
+			   				  , B.LASTYEAR
+			   				  , B.ITEMCODE	 
+			   				  , B.ITEMNAME
+			   				  , B.ITEM_STAT
+			   				  , B.STKIND_CODE
+			   			   FROM DBO.INCOMESTATEMENT_Q3 A
+			   			  RIGHT OUTER JOIN DBO.INCOMESTATEMENT_Q4 B 
+			   			     ON A.STKIND_CODE = B.STKIND_CODE
+			   			    AND TRIM(A.STOCKCODE) = TRIM(B.STOCKCODE)
+			   			    AND A.ITEMCODE = B.ITEMCODE
+			   			    AND LEFT(A.CLOSINGDATE,4) = LEFT(B.CLOSINGDATE,4)
+			   			    AND B.STKIND_CODE = '연결'
+			   			    AND A.STKIND_CODE = '연결'
+				       	    AND A.ITEM_STAT IS NOT NULL
+							AND B.ITEM_STAT IS NOT NULL)D)  AC
+						  WHERE AC.ITEM_STAT IS NOT NULL
+				     	    AND AC.STKIND_CODE = '연결'
+						    AND ENDQUATER <> '0'";
 
             dt = dbc.DataAdapter(squery);
             return dt;

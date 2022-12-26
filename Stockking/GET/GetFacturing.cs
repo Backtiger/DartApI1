@@ -78,22 +78,43 @@ namespace Stockking.GET
         {
             
             DataTable dtscreen = new DataTable();
-
+            Dictionary<string, Dictionary<string,string>> KeyValue = new Dictionary<string, Dictionary<string, string>>();
+            Dictionary<string, string> ValValue = new Dictionary<string, string>();
             dtscreen = dtincome.Copy();
 
             dtscreen.Columns.Add("qoq");
             dtscreen.Columns.Add("yoy");
 
+            double qoq;
+            double yoy;
+
+            string beforeyear;
+            string aftteryear;
+
             foreach (DataRow dr in dtscreen.Rows)
-            {               
-                double qoq = comparison(Convert.ToDouble(dr["EndQuater"]), Convert.ToDouble(dr["EndFirstPeroid"]));
+            {
+                qoq = comparison(Convert.ToDouble(dr["ENDQUATER"]), Convert.ToDouble(dr["LASTQUATER"]));
                 dr["qoq"] = qoq;
-                
-                double yoy = comparison(Convert.ToDouble(dr["AccQuater"]), Convert.ToDouble(dr["Lastyear"]));
-                dr["yoy"] = yoy;
+
+                if (dr["RPKIND"].ToString() == "사업보고서")
+                {
+
+                    ValValue.Add(dr["Closingdate"].ToString(), dr["ENDQUATER"].ToString());
+                    KeyValue.Add(dr["StName"].ToString(),ValValue);
+
+                    yoy = comparison(Convert.ToDouble(dr["AccQuater"]), Convert.ToDouble(dr["Lastyear"]));
+                    
+                    dr["yoy"] = yoy;
+                    
+
+                }
+                else
+                {
+                    yoy = comparison(Convert.ToDouble(dr["EndQuater"]), Convert.ToDouble(dr["Lastyear"]));
+                    dr["yoy"] = yoy;
+                }
             }
 
-            
 
             return dtscreen;
         }
