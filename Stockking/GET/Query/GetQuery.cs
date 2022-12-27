@@ -72,17 +72,19 @@ namespace Stockking.GET
         public DataTable AlltiemScreennig()
         {
             DataTable dt = new DataTable();
-            string squery = @"					      SELECT AC.STOCKCODE
+            string squery = @"	
+                          SELECT AC.STOCKCODE
                          	   , AC.STNAME
 							   , AC.RPKIND
                                , AC.CLOSINGDATE AS CLOSINGDATE
                          	   , AC.ENDQUATER
 							   , AC.ENDFIRSTPEROID
+							   , AC.Accquater
 							   , AC.LASTYEAR
 							   , AC.ITEMNAME
 							   , AC.ITEMCODE						
 							   , AC.ITEM_STAT
-							   , ISNULL(LAG(AC.ENDQUATER)OVER(PARTITION BY AC.STNAME,AC.ITEM_STAT ORDER BY AC.STNAME, AC.ITEM_STAT,AC.CLOSINGDATE,AC.RPKIND),0)	AS LASTQUATER							 								
+							   , ISNULL(LAG(AC.ENDQUATER)OVER(PARTITION BY AC.STNAME,AC.ITEM_STAT ORDER BY AC.STNAME, AC.ITEM_STAT,AC.CLOSINGDATE,AC.RPKIND),0) AS LASTQUATER								 													
 						    FROM
 						 (SELECT A.STNAME
 						       , A.STOCKCODE
@@ -90,6 +92,7 @@ namespace Stockking.GET
                                , A.CLOSINGDATE 
                          	   , A.ENDQUATER
 							   , A.ENDFIRSTPEROID
+							   , a.Accquater
 							   , A.LASTYEARQUATER AS LASTYEAR
 							   , A.ITEMNAME
 							   , A.ITEMCODE
@@ -105,6 +108,7 @@ namespace Stockking.GET
                               , B.CLOSINGDATE							
                          	  , B.ENDQUATER
 							  , B.ENDFIRSTPEROID
+							  , b.Accquater
 							  , B.LASTYEARQUATER AS LASTYEAR
 							  , B.ITEMNAME
 							   , B.ITEMCODE
@@ -120,6 +124,7 @@ namespace Stockking.GET
                               , C.CLOSINGDATE
                          	  , C.ENDQUATER
 							  , C.ENDFIRSTPEROID
+							  , c.Accquater
 							  , C.LASTYEARQUATER AS LASTYEAR
 							  , C.ITEMNAME
 							  , C.ITEMCODE
@@ -136,6 +141,7 @@ namespace Stockking.GET
 			   				  , B.CLOSINGDATE
 			   				  , B.ACCQUATER- ABS(ISNULL(A.ACCQUATER,0)) AS ENDQUATER
 			   				  , B.ENDFIRSTPEROID
+							  , b.Accquater
 			   				  , B.LASTYEAR
 			   				  , B.ITEMCODE	 
 			   				  , B.ITEMNAME

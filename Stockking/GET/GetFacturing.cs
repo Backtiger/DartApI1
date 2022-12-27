@@ -78,9 +78,11 @@ namespace Stockking.GET
         {
             
             DataTable dtscreen = new DataTable();
-            Dictionary<string, Dictionary<string,string>> KeyValue = new Dictionary<string, Dictionary<string, string>>();
-            Dictionary<string, string> ValValue = new Dictionary<string, string>();
             dtscreen = dtincome.Copy();
+
+
+
+            Dictionary<string, string> Diclist = new Dictionary<string, string>();
 
             dtscreen.Columns.Add("qoq");
             dtscreen.Columns.Add("yoy");
@@ -97,16 +99,9 @@ namespace Stockking.GET
                 dr["qoq"] = qoq;
 
                 if (dr["RPKIND"].ToString() == "사업보고서")
-                {
-
-                    ValValue.Add(dr["Closingdate"].ToString(), dr["ENDQUATER"].ToString());
-                    KeyValue.Add(dr["StName"].ToString(),ValValue);
-
-                    yoy = comparison(Convert.ToDouble(dr["AccQuater"]), Convert.ToDouble(dr["Lastyear"]));
-                    
+                {                    
+                    yoy = comparison(Convert.ToDouble(dr["AccQuater"]), Convert.ToDouble(dr["Lastyear"]));                    
                     dr["yoy"] = yoy;
-                    
-
                 }
                 else
                 {
@@ -114,6 +109,21 @@ namespace Stockking.GET
                     dr["yoy"] = yoy;
                 }
             }
+
+            var query =
+            from dr in dtscreen.AsEnumerable()
+            where dr.Field<string>("item_stat")   == "A" &&
+                  dr.Field<string>("closingdate") == " " &&                 
+                dr.Field<double>("qoq") == 123 &&
+                dr.Field<double>("yoy") == 12
+                
+
+            select new
+            {
+                lot  = dr.Field<string>("lot"),
+                data = dr.Field<double>("data")
+            };
+
 
 
             return dtscreen;

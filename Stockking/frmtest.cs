@@ -35,17 +35,6 @@ namespace Stockking
             // DtScreening.DataSource = dt;
         }
     
-
-        public void getJason(string c_key)
-        {
-            using (WebClient webClient = new WebClient())
-            {
-                var jason = webClient.DownloadString("https://opendart.fss.or.kr/api/corpCode.xml");
-                webClient.OpenRead("https://opendart.fss.or.kr/api/corpCode.xml");
-              
-            }
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -124,9 +113,14 @@ namespace Stockking
                                                ,cboReport.SelectedValue.ToString());
             fin.ShowDialog();
         }
+
         public void SetCombo()
         {
-                     
+            cboperiod.Items.Add("전체 년도 평균");
+            cboperiod.Items.Add("최근 4분기 평균");
+            cboperiod.Items.Add("전기 대비");
+            cboperiod.Items.Add("전년 대비");
+
 
             Dictionary<string, string> combodata = new Dictionary<string, string>();
             combodata.Add("11013", "1분기 보고서");
@@ -225,5 +219,7 @@ namespace Stockking
                 DgCondition.Rows[Rowindex].Cells[3].Style.BackColor = Color.Gray;
             }     
         }
+
+    
     }
 }

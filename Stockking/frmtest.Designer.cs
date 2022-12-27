@@ -49,7 +49,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.DgScreening = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cboFirstDate = new System.Windows.Forms.ComboBox();
+            this.cboperiod = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_deleteLine = new System.Windows.Forms.Button();
             this.btn_AddLine = new System.Windows.Forms.Button();
@@ -253,7 +253,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cboFirstDate);
+            this.panel1.Controls.Add(this.cboperiod);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.btn_deleteLine);
             this.panel1.Controls.Add(this.btn_AddLine);
@@ -266,18 +266,18 @@
             this.panel1.Size = new System.Drawing.Size(416, 639);
             this.panel1.TabIndex = 1;
             // 
-            // cboFirstDate
+            // cboperiod
             // 
-            this.cboFirstDate.FormattingEnabled = true;
-            this.cboFirstDate.Location = new System.Drawing.Point(3, 343);
-            this.cboFirstDate.Name = "cboFirstDate";
-            this.cboFirstDate.Size = new System.Drawing.Size(101, 20);
-            this.cboFirstDate.TabIndex = 44;
+            this.cboperiod.FormattingEnabled = true;
+            this.cboperiod.Location = new System.Drawing.Point(3, 370);
+            this.cboperiod.Name = "cboperiod";
+            this.cboperiod.Size = new System.Drawing.Size(121, 20);
+            this.cboperiod.TabIndex = 44;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 318);
+            this.label5.Location = new System.Drawing.Point(3, 354);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 12);
             this.label5.TabIndex = 43;
@@ -485,11 +485,11 @@
         private System.Windows.Forms.Button btn_deleteLine;
         private System.Windows.Forms.Button btn_AddLine;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cboFirstDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colcondition;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colsign;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colvalue;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colsubvalue;
+        private System.Windows.Forms.ComboBox cboperiod;
     }
 }
 
