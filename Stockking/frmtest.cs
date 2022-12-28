@@ -22,6 +22,8 @@ namespace Stockking
 
         GetFacturing GetFacturing = new GetFacturing();
 
+        
+
         public frmtest()
         {   
             InitializeComponent();
@@ -141,8 +143,40 @@ namespace Stockking
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+            
+            DgScreening.DataSource= GetFacturing.Calculation(MakeWhere());
+
+        }
+        private string MakeWhere()
         {            
-            DgScreening.DataSource= GetFacturing.Calculation();
+            string itemStat = null;
+            string sign = null;
+            string value = null;
+            string where = null;
+            string secondvalue = null;
+
+            foreach (DataGridViewRow dr in DgCondition.Rows)
+            {
+                itemStat = "'" + dr.Cells[0].Value + "'";
+                sign = " " + dr.Cells[1].Value;
+                value = " " + dr.Cells[2].Value.ToString().Trim();
+
+                if (dr.Cells[3].ReadOnly == false && !string.IsNullOrEmpty(dr.Cells[3].Value.ToString()))
+                    secondvalue = dr.Cells[3].Value.ToString();
+
+
+                if (DgCondition.Rows.Count > 0 && !string.IsNullOrEmpty(value) && !string.IsNullOrEmpty(sign))
+                {
+                    where = "item_stat = " + itemStat;
+
+                    where += " EndQuater" + sign + value;
+                }
+            }
+
+            MessageBox.Show(where);
+            return where;
         }
 
 
@@ -150,7 +184,7 @@ namespace Stockking
         {
             DataGridViewComboBoxCell cbocell = new DataGridViewComboBoxCell();
             DataGridViewComboBoxCell cbocell2 = new DataGridViewComboBoxCell();
-            cbocell.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
+            //cbocell.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
 
 
             foreach (var enumlist in Enum.GetValues(typeof(GetFacturing.incomeitemstat))) {
@@ -179,6 +213,7 @@ namespace Stockking
 
             
         }
+        
 
         private void btn_AddLine_Click(object sender, EventArgs e)
         {
@@ -187,7 +222,7 @@ namespace Stockking
 
         private void DgCondition_DataError_1(object sender, DataGridViewDataErrorEventArgs e)
         {
-            e.Cancel = true;
+            e.Cancel = true;            
         }
 
         private void DgCondition_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

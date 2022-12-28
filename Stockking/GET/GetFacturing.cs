@@ -74,7 +74,7 @@ namespace Stockking.GET
         }
 
     
-        public DataTable Calculation()
+        public DataTable Calculation(string where)
         {
             
             DataTable dtscreen = new DataTable();
@@ -110,23 +110,25 @@ namespace Stockking.GET
                 }
             }
 
-            var query =
-            from dr in dtscreen.AsEnumerable()
-            where dr.Field<string>("item_stat")   == "A" &&
-                  dr.Field<string>("closingdate") == " " &&                 
-                dr.Field<double>("qoq") == 123 &&
-                dr.Field<double>("yoy") == 12
+           DataTable dt =  dtscreen.Select(where).CopyToDataTable();
+
+            //var query =
+            //from dr in dtscreen.AsEnumerable()
+            //where dr.Field<string>("item_stat")   == "A" &&
+            //      dr.Field<string>("closingdate") == " " &&                 
+            //    dr.Field<double>("qoq") == 123 &&
+            //    dr.Field<double>("yoy") == 12
                 
 
-            select new
-            {
-                lot  = dr.Field<string>("lot"),
-                data = dr.Field<double>("data")
-            };
+            //select new
+            //{
+            //    lot  = dr.Field<string>("lot"),
+            //    data = dr.Field<double>("data")
+            //};
 
 
 
-            return dtscreen;
+            return dt;
         }
         
         private double comparison(double afterward,double previous)
